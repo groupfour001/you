@@ -492,6 +492,111 @@ h3 {
     will-change: opacity;
 }
 
+/* --- HERO & SLIDER: RESPONSIVE IMPROVEMENTS --- */
+@media (max-width: 600px) {
+    .hero {
+        height: 100vh;
+        min-height: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        overflow: hidden;
+        background: var(--background-color);
+        position: relative;
+    }
+    .hero-slider {
+        width: 100vw;
+        min-width: 100vw;
+        height: 60vh;
+        min-height: 250px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        overflow: visible;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+    }
+    .slide {
+        width: 100vw;
+        min-width: 100vw;
+        height: 60vh;
+        min-height: 250px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        position: relative;
+        margin: 0;
+        border-radius: 0;
+        overflow: hidden;
+    }
+    .slide-image {
+        width: 100vw;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        filter: brightness(0.7);
+    }
+    .slide-overlay {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.2) 100%);
+        z-index: 2;
+    }
+    .quote-container {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90vw;
+        background: rgba(0,0,0,0.45);
+        border-radius: 12px;
+        padding: 1rem 0.5rem;
+        z-index: 3;
+        text-align: center;
+        color: #fff;
+        font-size: 1rem;
+    }
+    .celebrity-quote, .quote-author {
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+    .hero-content {
+        position: relative;
+        z-index: 4;
+        width: 100vw;
+        margin: 0 auto;
+        padding: 1.5rem 5vw 2.5rem 5vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        background: none;
+        text-align: center;
+    }
+    .hero-content h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.7rem;
+        color: #fff;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+        color: #fff;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .btn-primary, .btn-large {
+        font-size: 1rem;
+        padding: 0.7rem 1.5rem;
+        border-radius: 25px;
+        margin-top: 0.5rem;
+    }
+}
+
 /* Features Section */
 .features {
     background: var(--background-color);
