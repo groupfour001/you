@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CelebMingle - VIP Payment Gateway</title>
+    <link rel="stylesheet" href="styles/livestreamplay.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="payment-wrapper">
+        <div class="payment-container">
+            <!-- Header Section -->
+            <div class="payment-header">
+                <div class="logo-section">
+                    <img src="images/minglelogo.jpg" alt="CelebMingle" class="brand-logo">
+                    <div class="security-badge">
+                        <i class="fas fa-shield-check"></i>
+                        <span>256-bit SSL Secured</span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="back-to-home-btn" onclick="window.location.href='index.html'">
+                        <i class="fas fa-home"></i>
+                        <span>Back to Home</span>
+                    </button>
+                </div>
+                <h1 class="page-title">VIP Livestream Access</h1>
+                <p class="subtitle">Exclusive Cryptocurrency Payment Gateway</p>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="progress-steps">
+                <div class="step completed">
+                    <div class="step-number">1</div>
+                    <span>Package Selection</span>
+                </div>
+                <div class="step active">
+                    <div class="step-number">2</div>
+                    <span>Payment Method</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <span>Verification</span>
+                </div>
+            </div>
+
+            <!-- Package Selection -->
+            <div class="package-selection">
+                <h2 class="section-title">
+                    <i class="fas fa-star"></i>
+                    Choose Your Access Level
+                </h2>
+                
+                <div class="package-cards">
+                    <!-- Elite Package Card -->
+                    <div class="package-card elite-basic" data-package="elite">
+                        <input type="radio" name="package" value="elite" id="elite-package" checked>
+                        <label for="elite-package" class="package-label">
+                            <div class="package-header">
+                                <h3>Elite Access Package</h3>
+                                <div class="package-price">
+                                    <span class="currency">$</span>
+                                    <span class="amount">499.99</span>
+                                    <span class="period">USD</span>
+                                </div>
+                            </div>
+                            <div class="package-features" id="elite-features">
+                                <!-- Features will be populated by JavaScript -->
+                            </div>
+                            <div class="selection-indicator">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- VIP Package Card -->
+                    <div class="package-card vip-diamond" data-package="vip">
+                        <input type="radio" name="package" value="vip" id="vip-package">
+                        <label for="vip-package" class="package-label">
+                            <div class="package-header">
+                                <h3>VIP Diamond Experience</h3>
+                                <div class="package-price">
+                                    <span class="currency">$</span>
+                                    <span class="amount">3,499.99</span>
+                                    <span class="period">USD</span>
+                                </div>
+                            </div>
+                            <div class="package-features" id="vip-features">
+                                <!-- Features will be populated by JavaScript -->
+                            </div>
+                            <div class="selection-indicator">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </label>
+                </div>
+                
+                <!-- Selected Package Summary -->
+                <div class="selected-summary">
+                    <div class="summary-content">
+                        <span>Selected: </span>
+                        <span id="selectedPackageName">Elite Access Package</span>
+                        <span class="summary-price">$<span id="selectedPackagePrice">499.99</span></span>
+                    </div>
+                </div>
+            </div>
+                
+                <!-- Timer Section -->
+                <div class="package-timer">
+                    <i class="fas fa-clock"></i>
+                    <span>Complete payment within:</span>
+                    <div class="countdown" id="paymentCountdown">14:59</div>
+                </div>
+            </div>
+
+            <!-- Value Comparison Section -->
+            <div class="value-comparison">
+                <h3 class="comparison-title">Package Comparison</h3>
+                <div class="comparison-grid">                        <div class="elite-summary">
+                            <h4 class="summary-title">Elite Access ($499.99)</h4>
+                            <div class="summary-features">
+                                Standard HD livestream access<br>
+                                General chat (view only)<br>
+                                3-day limited replay access<br>
+                                Mobile streaming only
+                            </div>
+                        </div>
+                        <div class="vip-summary">
+                            <h4 class="summary-title">VIP Diamond Experience ($3,499.99)</h4>
+                        <div class="summary-features">
+                            🎯 EXCLUSIVE 1-on-1 private video call (10 mins)<br>
+                            🎬 8K Ultra HD + multiple camera angles<br>
+                            ♾️ LIFETIME access to ALL content library<br>
+                            📞 GUARANTEED Live Q&A Priority<br>
+                            🎁 Physical + digital memorabilia<br>
+                            🏆 VIP status recognition<br>
+                            🎟️ FREE next 5 celebrity events<br>
+                            💎 Ultra-private members club
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crypto Payment Section -->
+            <div class="crypto-payment-section">
+                <h2 class="section-title">
+                    <i class="fab fa-bitcoin"></i>
+                    Select Cryptocurrency
+                </h2>
+                
+                <div class="crypto-grid">
+                    <!-- Bitcoin Option -->
+                    <div class="crypto-option" data-crypto="btc">
+                        <input type="radio" name="crypto" value="btc" id="btc" checked>
+                        <label for="btc" class="crypto-card">
+                            <div class="crypto-icon">
+                                <i class="fab fa-bitcoin"></i>
+                            </div>
+                            <div class="crypto-info">
+                                <h3>Bitcoin</h3>
+                                <span class="crypto-symbol">BTC</span>
+                                <div class="network-info">
+                                    <span class="network-label">Network:</span>
+                                    <span class="network-name">Bitcoin Mainnet</span>
+                                </div>
+                                <div class="crypto-rate">
+                                    <span class="rate-amount" id="btcRate">≈ 0.021 BTC</span>
+                                    <span class="rate-usd">($<span id="btcUSD">499.99</span> USD)</span>
+                                </div>
+                            </div>
+                            <div class="selection-indicator">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Ethereum Option -->
+                    <div class="crypto-option" data-crypto="eth">
+                        <input type="radio" name="crypto" value="eth" id="eth">
+                        <label for="eth" class="crypto-card">
+                            <div class="crypto-icon">
+                                <i class="fab fa-ethereum"></i>
+                            </div>
+                            <div class="crypto-info">
+                                <h3>Ethereum</h3>
+                                <span class="crypto-symbol">ETH</span>
+                                <div class="network-info">
+                                    <span class="network-label">Network:</span>
+                                    <span class="network-name">Ethereum Mainnet</span>
+                                </div>
+                                <div class="crypto-rate">
+                                    <span class="rate-amount" id="ethRate">≈ 0.343 ETH</span>
+                                    <span class="rate-usd">($<span id="ethUSD">499.99</span> USD)</span>
+                                </div>
+                            </div>
+                            <div class="selection-indicator">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- USDT Option -->
+                    <div class="crypto-option" data-crypto="usdt">
+                        <input type="radio" name="crypto" value="usdt" id="usdt">
+                        <label for="usdt" class="crypto-card">
+                            <div class="crypto-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="crypto-info">
+                                <h3>Tether</h3>
+                                <span class="crypto-symbol">USDT</span>
+                                <div class="network-info">
+                                    <span class="network-label">Network:</span>
+                                    <span class="network-name">Tron (TRC-20)</span>
+                                </div>
+                                <div class="crypto-rate">
+                                    <span class="rate-amount" id="usdtRate">499.99 USDT</span>
+                                    <span class="rate-usd">($<span id="usdtUSD">499.99</span> USD)</span>
+                                </div>
+                            </div>
+                            <div class="selection-indicator">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Payment Details -->
+                <div class="payment-details">
+                    <div class="wallet-section">
+                        <h3>Send Payment To:</h3>
+                        <div class="wallet-display">
+                            <div class="wallet-address">
+                                <div class="address-label">
+                                    <i class="fas fa-wallet"></i>
+                                    <span>Wallet Address</span>
+                                </div>
+                                <div class="address-container">
+                                    <input type="text" id="walletAddress" readonly value="bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh">
+                                    <button class="copy-btn" onclick="copyAddress()">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="amount-display">
+                                <div class="amount-label">Amount to Send:</div>
+                                <div class="crypto-amount" id="cryptoAmount">0.021 BTC</div>
+                                <div class="usd-equivalent">≈ $<span id="usdEquivalent">499.99</span> USD</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Verification Form -->
+                    <div class="verification-form">
+                        <h3>Payment Verification</h3>
+                        <div class="form-group">
+                            <label for="transactionReceipt">Transaction Receipt/Slip</label>
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="transactionReceipt" accept="image/*,.pdf" required>
+                                <div class="file-upload-display">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span class="upload-text">Upload transaction copy or screenshot</span>
+                                    <span class="file-info">Accepted formats: JPG, PNG, PDF</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="userEmail">Email Address</label>
+                            <input type="email" id="userEmail" placeholder="Enter your email for access confirmation" required>
+                        </div>
+
+                        <div class="payment-instructions">
+                            <h4><i class="fas fa-info-circle"></i> Payment Instructions</h4>
+                            <ol>
+                                <li>Copy the wallet address above</li>
+                                <li>Send the exact amount from your crypto wallet</li>
+                                <li>Wait for transaction confirmation</li>
+                                <li>Enter your transaction hash above</li>
+                                <li>Click verify to gain instant access</li>
+                            </ol>
+                        </div>
+
+                        <button class="verify-payment-btn" onclick="verifyPayment()">
+                            <i class="fas fa-shield-check"></i>
+                            <span>Verify Payment & Access Stream</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Footer -->
+            <div class="security-footer">
+                <div class="security-features">
+                    <div class="security-item">
+                        <i class="fas fa-lock"></i>
+                        <span>End-to-End Encryption</span>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Blockchain Secured</span>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Instant Access</span>
+                    </div>
+                </div>
+                <p class="security-notice">
+                    Your cryptocurrency transaction is secured by blockchain technology. 
+                    Access will be granted immediately upon payment verification.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="success-animation">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Details Sent Successfully!</h2>
+            <p>We would send you live code access via email if payment is confirmed</p>
+            <div class="modal-actions">
+                <button class="access-stream-btn" onclick="window.location.href='livestream.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Return to Live Access Page
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/livestreamplay.js"></script>
+</body>
+</html>

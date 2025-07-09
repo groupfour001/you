@@ -1,0 +1,771 @@
+/* Enhanced form validation styles */
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #c5a35a;
+    box-shadow: 0 0 10px rgba(197, 163, 90, 0.2);
+}
+
+/* Warning state for validation */
+input.warning, select.warning {
+    border-color: #ff6b6b !important;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.3) !important;
+}
+
+/* Error message styling */
+.error-message {
+    color: #ff6b6b;
+    font-size: 14px;
+    margin-top: 5px;
+    animation: fadeIn 0.3s ease-in;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: rgba(255, 107, 107, 0.1);
+    border-left: 3px solid #ff6b6b;
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* Phone input container improvements */
+.phone-input-container {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.country-code-select {
+    flex: 0 0 120px;
+    font-size: 14px;
+    padding: 12px 8px;
+}
+
+#phone {
+    flex: 1;
+}
+
+/* Contact method highlighting */
+.form-row.highlighted {
+    background-color: rgba(197, 163, 90, 0.1);
+    border: 1px solid rgba(197, 163, 90, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+/* Tab completion indicator */
+.tab.completed {
+    position: relative;
+}
+
+.tab.completed::after {
+    content: '✓';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #51cf66;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* City manual input styling */
+#cityManualInput {
+    margin-top: 10px;
+    border: 2px solid #c5a35a;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+#cityManualInput:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(197, 163, 90, 0.3);
+    border-color: #b18d3d;
+}
+
+/* Form section transitions */
+.form-section {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+}
+
+.form-section.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Notification System */
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from { 
+        opacity: 1; 
+        transform: translateX(0);
+    }
+    to { 
+        opacity: 0; 
+        transform: translateX(100%);
+    }
+}
+
+.notification {
+    animation: slideInFromRight 0.3s ease-out;
+    cursor: pointer;
+}
+
+.notification:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2) !important;
+}
+
+/* Enhanced Contact Section Styling */
+.contact-section-highlight {
+    background: linear-gradient(135deg, rgba(197, 163, 90, 0.05) 0%, rgba(197, 163, 90, 0.15) 100%);
+    border: 2px solid rgba(197, 163, 90, 0.3);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-section-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(197, 163, 90, 0.1), transparent);
+    transition: left 0.6s;
+}
+
+.contact-section-highlight:hover::before {
+    left: 100%;
+}
+
+/* Enhanced Tab Completion */
+.tab.completed {
+    background: linear-gradient(135deg, #c5a35a 0%, #b8983f 100%);
+    color: white;
+    position: relative;
+}
+
+.tab.completed::after {
+    content: '✓';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Enhanced Phone Input Container */
+.phone-input-container {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.country-code-select {
+    flex: 0 0 180px;
+    min-width: 180px;
+}
+
+.phone-input-container input[type="tel"] {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Enhanced Dropdown Styling */
+.country-code-select optgroup {
+    font-weight: 600;
+    color: #333;
+    background-color: #f8f9fa;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+.country-code-select option {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #555;
+}
+
+.country-code-select option:hover {
+    background-color: rgba(197, 163, 90, 0.1);
+}
+
+/* Contact Method Visual Feedback */
+.preferred-contact-highlight {
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* Success validation state */
+.form-group.validated input,
+.form-group.validated select {
+    border-color: #51cf66;
+}
+
+/* Enhanced Personal Section Styling */
+.personal-section-highlight {
+    background: linear-gradient(135deg, rgba(197, 163, 90, 0.05) 0%, rgba(197, 163, 90, 0.15) 100%);
+    border: 2px solid rgba(197, 163, 90, 0.3);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.personal-section-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(197, 163, 90, 0.1), transparent);
+    transition: left 0.6s;
+}
+
+.personal-section-highlight:hover::before {
+    left: 100%;
+}
+
+/* Name Input Enhancement */
+.form-group input[type="text"] {
+    transition: all 0.3s ease;
+}
+
+.form-group input[type="text"]:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(197, 163, 90, 0.15);
+}
+
+.form-group.validated input[type="text"] {
+    border-color: #51cf66;
+    position: relative;
+}
+
+.form-group.validated::after {
+    content: '✓';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #51cf66;
+    font-weight: bold;
+    font-size: 16px;
+    z-index: 10;
+}
+
+/* Password Strength Indicator */
+.password-strength {
+    animation: fadeInUp 0.3s ease-out;
+    position: relative;
+}
+
+.password-strength::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: currentColor;
+    border-radius: 2px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Password Match Indicator */
+.password-match {
+    animation: bounceIn 0.4s ease-out;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    70% { transform: scale(0.9); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Enhanced Gender and Date Selects */
+.form-group select:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(197, 163, 90, 0.2);
+}
+
+.form-group.validated select {
+    border-color: #51cf66;
+}
+
+/* Three Column Layout Enhancement */
+.three-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.three-columns .form-group {
+    position: relative;
+}
+
+/* Birth Date Selection Enhancement */
+.form-row:has(#birthYear) {
+    background: rgba(197, 163, 90, 0.02);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    border: 1px solid rgba(197, 163, 90, 0.1);
+    transition: all 0.3s ease;
+}
+
+.form-row:has(#birthYear):hover {
+    background: rgba(197, 163, 90, 0.05);
+    border-color: rgba(197, 163, 90, 0.2);
+}
+
+/* Password Container Enhancement */
+.password-input-container {
+    position: relative;
+    overflow: visible;
+    display: flex;
+    flex-direction: column; /* This ensures proper layout for error messages */
+}
+
+.password-input-container input {
+    transition: all 0.3s ease;
+}
+
+.password-input-container input:focus {
+    padding-right: 50px;
+}
+
+.password-toggle {
+    transition: all 0.3s ease;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+}
+
+.password-toggle:hover {
+    background-color: rgba(197, 163, 90, 0.1);
+    color: #c5a35a;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.password-toggle i {
+    transition: none;
+    display: block;
+}
+
+/* Ensure the input and toggle button are on the same row */
+.password-input-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Ensure error messages for password fields appear below the field */
+.password-input-container .error-message {
+    margin-top: 5px;
+    width: 100%;
+    display: block;
+    color: #ff6b6b;
+    font-size: 14px;
+}
+
+/* Age Validation Visual Feedback */
+.age-valid {
+    border-color: #51cf66 !important;
+    background: linear-gradient(45deg, rgba(81, 207, 102, 0.05), rgba(81, 207, 102, 0.1));
+}
+
+.age-invalid {
+    border-color: #ff6b6b !important;
+    background: linear-gradient(45deg, rgba(255, 107, 107, 0.05), rgba(255, 107, 107, 0.1));
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Form Progress Indicator */
+.personal-progress {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #51cf66, #c5a35a);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+    width: 0%;
+}
+
+.form-section.personal-complete .personal-progress {
+    width: 100%;
+}
+
+/* Enhanced Input Focus States */
+.form-group input:focus + label,
+.form-group select:focus + label {
+    color: #c5a35a;
+    transform: translateY(-2px);
+    font-weight: 500;
+}
+
+/* Personal Section Specific Animations */
+.personal-field-success {
+    animation: successPulse 0.6s ease-out;
+}
+
+@keyframes successPulse {
+    0% { background-color: rgba(81, 207, 102, 0); }
+    50% { background-color: rgba(81, 207, 102, 0.2); }
+    100% { background-color: rgba(81, 207, 102, 0.05); }
+}
+
+/* Mobile Responsive for Personal Section */
+@media (max-width: 768px) {
+    .three-columns {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .form-row:has(#birthYear) {
+        padding: 10px;
+        margin: 10px 0;
+    }
+    
+    .personal-section-highlight {
+        padding: 12px;
+        margin: 8px 0;
+    }
+}
+
+/* Mobile Responsive Enhancements */
+
+/* Tablet and small desktop adjustments */
+@media (max-width: 768px) {
+    /* Form control mobile adjustments */
+    .form-control {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    /* Error message mobile styling */
+    .error-message {
+        font-size: 12px;
+        padding: 4px 8px;
+        margin-top: 6px;
+    }
+    
+    /* Phone input container mobile */
+    .phone-input-container {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .country-code-select {
+        flex: none;
+        width: 100%;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        border-right: none;
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    #phone {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    /* Tab completion indicator mobile */
+    .tab.completed::after {
+        width: 18px;
+        height: 18px;
+        font-size: 11px;
+        right: -3px;
+        top: -3px;
+    }
+    
+    /* City manual input mobile */
+    #cityManualInput {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        margin-top: 8px;
+    }
+    
+    /* Birthday group mobile */
+    .birthday-group {
+        padding: 12px;
+    }
+    
+    .birthday-group::before {
+        font-size: 16px;
+        top: 8px;
+        right: 8px;
+    }
+}
+
+/* Mobile phone specific */
+@media (max-width: 480px) {
+    /* Smaller form controls */
+    .form-control {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+    
+    /* Compact error messages */
+    .error-message {
+        font-size: 11px;
+        padding: 3px 6px;
+        margin-top: 4px;
+        border-radius: 3px;
+    }
+    
+    /* Phone input mobile optimization */
+    .country-code-select {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+    
+    #phone {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+    
+    /* Smaller tab indicators */
+    .tab.completed::after {
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
+        right: -2px;
+        top: -2px;
+    }
+    
+    /* Compact city input */
+    #cityManualInput {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+        margin-top: 6px;
+        border-radius: 6px;
+    }
+    
+    /* Compact birthday group */
+    .birthday-group {
+        padding: 10px;
+        border-radius: 6px;
+    }
+    
+    .birthday-group::before {
+        font-size: 14px;
+        top: 6px;
+        right: 6px;
+    }
+    
+    /* Contact method highlighting mobile */
+    .form-row.highlighted {
+        padding: 10px;
+        border-radius: 6px;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 375px) {
+    .form-control {
+        padding: 6px 8px;
+        font-size: 0.8rem;
+    }
+    
+    .error-message {
+        font-size: 10px;
+        padding: 2px 4px;
+    }
+    
+    .country-code-select,
+    #phone {
+        padding: 6px 8px;
+        font-size: 0.8rem;
+    }
+    
+    .tab.completed::after {
+        width: 14px;
+        height: 14px;
+        font-size: 9px;
+    }
+    
+    #cityManualInput {
+        padding: 6px 8px;
+        font-size: 0.8rem;
+    }
+    
+    .birthday-group {
+        padding: 8px;
+    }
+    
+    .birthday-group::before {
+        font-size: 12px;
+        top: 4px;
+        right: 4px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+    .form-control {
+        padding: 5px 6px;
+        font-size: 0.75rem;
+    }
+    
+    .error-message {
+        font-size: 9px;
+        padding: 2px 3px;
+    }
+    
+    .country-code-select,
+    #phone {
+        padding: 5px 6px;
+        font-size: 0.75rem;
+    }
+    
+    .tab.completed::after {
+        width: 12px;
+        height: 12px;
+        font-size: 8px;
+        right: -1px;
+        top: -1px;
+    }
+    
+    #cityManualInput {
+        padding: 5px 6px;
+        font-size: 0.75rem;
+    }
+    
+    .birthday-group {
+        padding: 6px;
+    }
+    
+    .birthday-group::before {
+        font-size: 10px;
+        top: 2px;
+        right: 2px;
+    }
+    
+    .form-row.highlighted {
+        padding: 6px;
+    }
+}
+
+/* Mobile-specific touch improvements */
+@media (hover: none) and (pointer: coarse) {
+    /* Better touch targets for mobile */
+    .form-control,
+    input,
+    select,
+    button {
+        min-height: 44px;
+    }
+    
+    .tab {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .password-toggle {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .checkbox-group input[type="checkbox"] {
+        min-width: 24px;
+        min-height: 24px;
+    }
+}
+
+/* Landscape orientation adjustments for phones */
+@media (max-width: 768px) and (orientation: landscape) {
+    .form-container {
+        padding: 1rem;
+    }
+    
+    .form-header {
+        margin-bottom: 1rem;
+    }
+    
+    .form-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    .form-tabs {
+        margin-bottom: 1rem;
+    }
+    
+    .form-group {
+        margin-bottom: 0.8rem;
+    }
+    
+    .sidebar {
+        display: none; /* Hide sidebar in landscape to save space */
+    }
+}

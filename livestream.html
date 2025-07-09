@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CelebMingle Live - Connect with Your Favorite Celebrities</title>
+    <link rel="stylesheet" href="styles/livestream.css">
+    <link rel="stylesheet" href="styles/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="images/minglelogo.jpg" alt="CelebMingle Logo">
+        </div>
+        <div class="nav-search">
+            <input type="text" id="searchEvents" placeholder="Search events, celebrities...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link active">Live</a>
+            <a href="#" class="nav-link">Schedule</a>
+            <a href="#" class="nav-link">My Events</a>
+        </div>
+    </nav>
+
+    <!-- Live Access Modal -->
+    <div class="modal" id="liveAccessModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="window.location.href='index.html'">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Live Access Authentication</h2>
+            <div class="access-options">
+                <div class="access-card">
+                    <form id="liveAccessForm">
+                        <div class="form-group">
+                            <label for="liveAccessEmail">Email Address</label>
+                            <input type="email" id="liveAccessEmail" name="liveAccessEmail" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="liveAccessPin">Live Access Pin</label>
+                            <input type="text" id="liveAccessPin" name="liveAccessPin" placeholder="Enter Live Access Pin e.g CM33..." required>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="button" class="purchase-btn" onclick="validateLiveAccess()">Click to gain Access</button>
+                            <button type="button" class="resend-btn" onclick="resendAccessPin()">
+                                <i class="fas fa-redo"></i> Resend Access Pin
+                            </button>
+                            <button type="button" class="pay-now-btn" onclick="window.location.href='livestreamplay.html'">
+                                <i class="fas fa-credit-card"></i> Pay Now
+                            </button>
+                        </div>
+                    </form>
+                    <div id="accessErrorMessage" class="access-error-message" style="display: none;">
+                        To gain live access make a payment in the available plans, and check your email to get your pin
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-container">
+        <section class="stream-section">
+            <div class="video-container">
+                <div class="premium-overlay" id="premiumOverlay">
+                    <div class="premium-content">
+                        <div class="premium-header">
+                            <i class="fas fa-key premium-lock"></i>
+                            <div class="premium-badges">
+                                <span class="exclusive-tag"><i class="fas fa-star"></i> EXCLUSIVE</span>
+                                <span class="limited-tag"><i class="fas fa-hourglass-half"></i> LIMITED TIME</span>
+                            </div>
+                        </div>
+                        <h2>Unlock VIP Access</h2>
+                        <div class="premium-features">
+                            <p><i class="fas fa-check-circle"></i> Reveal Celebrity Identity</p>
+                            <p><i class="fas fa-check-circle"></i> Direct Interactive Q&A</p>
+                            <p><i class="fas fa-check-circle"></i> Backstage Content</p>
+                            <p><i class="fas fa-check-circle"></i> VIP Chat Access</p>
+                        </div>
+                        <p class="spots-warning"><i class="fas fa-exclamation-triangle"></i> Only 50 spots remaining!</p>
+                        <button class="premium-access-btn" onclick="redirectToPayment('vip')">
+                            <i class="fas fa-unlock"></i> Reveal & Access VIP Event
+                        </button>
+                    </div>
+                </div>
+                <div class="stream-placeholder hidden">
+                    <i class="fas fa-play-circle"></i>
+                    <p>Stream will begin shortly</p>
+                </div>
+                <div class="stream-controls">
+                    <div class="quality-settings">
+                        <button class="control-btn"><i class="fas fa-cog"></i> Quality</button>
+                        <button class="control-btn"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="stream-info">
+                <div class="exclusive-badge">
+                    <i class="fas fa-gem"></i> EXCLUSIVE EVENT
+                </div>
+                <h1>
+                    <i class="fas fa-key"></i> Special VIP Q&A Session
+                    <span class="teaser-tag">Global Pop Icon</span>
+                </h1>
+                <p class="event-teaser">Join an intimate Q&A session with one of the most influential artists of our generation. Multiple Grammy winner with record-breaking albums.</p>
+                <div class="stream-meta">
+                    <span class="countdown-badge" id="eventCountdown">
+                        <i class="fas fa-clock"></i> Starting in: 02:45:30
+                    </span>
+                    <span class="viewers">
+                        <i class="fas fa-user-lock"></i> Limited Spots Available
+                    </span>
+                    <div class="vip-indicators">
+                        <span class="vip-tag"><i class="fas fa-crown"></i> VIP Access</span>
+                        <span class="vip-tag"><i class="fas fa-comments"></i> Direct Interaction</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <div class="upcoming-events">
+                <h2>Upcoming Events</h2>
+                <div class="event-search">
+                    <input type="text" placeholder="Search upcoming events...">
+                </div>
+                <div class="events-list">
+                    <!-- Events will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="live-chat">
+                <div class="chat-header">
+                    <h3>Live Chat</h3>
+                    <button class="chat-settings"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+                <div class="chat-messages">
+                    <!-- Chat messages will be populated by JavaScript -->
+                </div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Type a message...">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <section class="upcoming-streams">
+        <h2>Recommended Streams</h2>
+        <div class="stream-grid">
+            <!-- Stream cards will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Purchase Access Modal -->
+    <div class="modal" id="purchaseModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('purchaseModal')">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2>Purchase Stream Access</h2>
+            <div class="access-options">
+                <div class="access-card">
+                    <h3>Elite Access Package</h3>
+                    <p class="price">$499.99</p>
+                    <ul>
+                        <li>HD Exclusive Livestream</li>
+                        <li>Live Chat Access</li>
+                        <li>7-Day Replay Access</li>
+                        <li>Priority question submission</li>
+                        <li>HD stream quality</li>
+                    </ul>
+                    <button class="purchase-btn" onclick="redirectToPayment('elite')">Secure Elite Access</button>
+                </div>
+                <div class="access-card premium">
+                    <div class="ultra-vip-badge">BEST VALUE</div>
+                    <h3>VIP Experience Package</h3>
+                    <p class="price">$3,499.99</p>
+                    <ul>
+                        <li>Exclusive VIP Chat Access</li>
+                        <li>4K Ultra HD Streaming</li>
+                        <li>Lifetime Event Replays</li>
+                        <li>Guaranteed question answers</li>
+                        <li>Exclusive behind-the-scenes content</li>
+                        <li>Personal virtual meet & greet</li>
+                        <li>Premium support access</li>
+                    </ul>
+                    <button class="purchase-btn premium" onclick="redirectToPayment('vip')">Join VIP Experience</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/firebase-config.js"></script>
+    <script src="scripts/modal.js"></script>
+    <script src="scripts/livestream.js"></script>
+</body>
+</html>

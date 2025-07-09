@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Payment</title>
+    <link rel="stylesheet" href="styles/payment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: #181c2b;
+            min-height: 100vh;
+        }
+        .payment-container {
+            background: #20222e;
+            max-width: 420px;
+            margin: 48px auto 32px auto;
+            border-radius: 14px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+            padding: 32px 28px 24px 28px;
+            border: 1px solid #23243a;
+        }
+        .payment-container h1 {
+            text-align: center;
+            color: #1e88e5;
+            margin-bottom: 28px;
+            letter-spacing: 1.2px;
+            font-size: 2rem;
+            font-family: 'Segoe UI Semibold', Arial, sans-serif;
+            font-weight: 600;
+            background: linear-gradient(90deg, #e3f2fd 0%, #bbdefb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            
+            text-shadow: 0 2px 8px #0002;
+        }
+        label, .amount-label {
+            color: #bdbdbd !important;
+            font-weight: 500;
+            font-size: 1.04rem;
+        }
+        select, input[type="file"] {
+            background: #23243a;
+            color: #e0e0e0;
+            border: 1px solid #35374a;
+            border-radius: 7px;
+            padding: 10px 8px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            transition: border 0.2s;
+        }
+        select:focus, input[type="file"]:focus {
+            border: 1px solid #0077ff;
+            outline: none;
+        }
+        #cryptoNetwork {
+            background: #23243a;
+            color: #bdbdbd;
+            border: 1px solid #35374a;
+        }
+        #cryptoNetwork option {
+            background: #23243a;
+            color: #bdbdbd;
+        }
+        .crypto-wallet {
+            background: #23243a;
+            border-radius: 8px;
+            padding: 14px 12px;
+            margin-top: 10px;
+            box-shadow: 0 2px 8px #0002;
+        }
+        .crypto-wallet span {
+            font-family: 'Consolas', monospace;
+            background: #181a20;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 0.98rem;
+            color: #90caf9;
+        }
+        .crypto-wallet button {
+            background: #35374a;
+            color: #e0e0e0;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-top: 6px;
+            box-shadow: 0 1px 4px #0002;
+            transition: background 0.2s, color 0.2s;
+        }
+        .crypto-wallet button:hover {
+            background: #0077ff;
+            color: #fff;
+        }
+        .payment-amount-real {
+            margin-top: 10px;
+            background: #1a1a1a;
+            border-left: 4px solid #0077ff;
+            border-radius: 4px;
+            padding: 10px 16px 10px 12px;
+            font-size: 0.98rem;
+            color: #bdbdbd;
+            box-shadow: 0 1px 6px #0002;
+        }
+        .amount-value, .crypto-symbol {
+            color: #90caf9;
+            font-weight: 600;
+        }
+        .equiv, .amount-note {
+            color: #888;
+            font-size: 0.93rem;
+        }
+        .upload-label {
+            background: #23243a;
+            color: #bdbdbd;
+            border: 2px dashed #35374a;
+            border-radius: 8px;
+            padding: 12px 28px;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            transition: background 0.2s, color 0.2s, border 0.2s;
+        }
+        .upload-label.submit-mode {
+            background: #0077ff;
+            color: #fff;
+            border: none;
+        }
+        .file-name {
+            color: #e0e0e0;
+            margin-top: 8px;
+            font-size: 0.97rem;
+        }
+        .pay-btn {
+            width: 100%;
+            background: #0077ff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: background 0.2s;
+        }
+        .pay-btn:hover {
+            background: #005fcc;
+        }
+        .pay-btn.sent {
+            background: #27ae60 !important;
+            color: #fff !important;
+        }
+        .premium-cancel-btn {
+            width: 100%;
+            background: linear-gradient(90deg, #ffb347 0%, #ffcc33 100%);
+            color: #23243a;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 12px rgba(255, 204, 51, 0.18);
+            transition: background 0.2s, color 0.2s;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .premium-cancel-btn:hover {
+            background: linear-gradient(90deg, #ff9800 0%, #ffd700 100%);
+            color: #181c2b;
+        }
+        .sponsors {
+            margin-top: 36px;
+            text-align: center;
+        }
+        .sponsors h2 {
+            color: #bdbdbd;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        .sponsor-icons {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            font-size: 2rem;
+            color: #0077ff;
+            filter: drop-shadow(0 2px 6px #000a);
+        }
+        .contact-support {
+            margin-top: 36px;
+            background: #23243a;
+            border-radius: 12px;
+            padding: 24px 18px 18px 18px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+        }
+        .contact-support h2 {
+            color: #90caf9;
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .contact-support p {
+            color: #e0e0e0;
+            margin-bottom: 14px;
+            font-size: 1rem;
+        }
+        .support-btn {
+            background: #0077ff;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 1rem;
+            box-shadow: 0 1px 6px #0003;
+            transition: background 0.2s, color 0.2s;
+        }
+        .support-btn:hover {
+            background: #005fcc;
+            color: #fff;
+        }
+        .back-home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+        }
+        @media (max-width: 500px) {
+            .payment-container {
+                padding: 18px 4vw 18px 4vw;
+            }
+            .sponsor-icons {
+                gap: 14px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>Complete Your Payment</h1>
+        <form id="paymentForm">
+            <div id="cryptoSection" class="method-section">
+                <label for="cryptoType">Select Crypto:</label>
+                <select id="cryptoType">
+                    <option value="btc">Bitcoin (BTC)</option>
+                    <option value="eth">Ethereum (ETH)</option>
+                    <option value="usdt">Tether (USDT)</option>
+                </select>
+                <label for="cryptoNetwork" style="margin-top:10px;display:block;">Select Crypto Network:</label>
+                <select id="cryptoNetwork">
+                    <option value="btc-mainnet">Bitcoin</option>
+                    <option value="eth-goerli">Ethereum</option>
+                    <option value="usdt-trc20">USDT (TRC20)</option>
+                </select>
+                <div class="crypto-wallet">
+                    <p>Send payment to:</p>
+                    <span id="walletAddress">bc1q4wfycd8xwfzn5y6zk77qsmjprf03wlx5gwf72x</span>
+                    <button type="button" id="copyWallet"><i class="fas fa-copy"></i> Copy</button>
+                    <div class="payment-amount-real">
+                        <i class="fab fa-usdt"></i>
+                        <span class="amount-label">Amount to Pay:</span>
+                        <span class="amount-value">299.99 <span class="crypto-symbol">USDT</span></span>
+                        <span class="equiv">(~0.0045 BTC / ~0.08 ETH)</span>
+                        <div class="amount-note">* Equivalent values are estimates. Please pay exactly 299.99 USDT or its current value in your selected crypto.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="upload-proof">
+                <label for="proofImage" class="upload-label">
+                    <i class="fas fa-upload"></i> Upload Proof of Transaction
+                    <input type="file" id="proofImage" name="proofImage" accept="image/*" required>
+                </label>
+                <span id="fileName" class="file-name"></span>
+            </div>
+            <button type="submit" class="pay-btn">Submit Proof of Transaction</button>
+            <button type="button" class="premium-cancel-btn" id="cancelPremiumPayment"><i class="fas fa-ban"></i> Cancel This Payment Process</button>
+        </form>
+        <div class="sponsors">
+            <h2>Our Sponsors</h2>
+            <div class="sponsor-icons">
+                <i class="fab fa-cc-visa" title="Visa"></i>
+                <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                <i class="fab fa-cc-amex" title="American Express"></i>
+                <i class="fab fa-cc-paypal" title="PayPal"></i>
+                <i class="fab fa-cc-stripe" title="Stripe"></i>
+                <i class="fab fa-bitcoin" title="Bitcoin"></i>
+            </div>
+        </div>
+        <div class="contact-support" id="supportSection">
+            <h2>Contact Support</h2>
+            <p>Need help? Reach out to our 24/7 support team.</p>
+            <a href="#" class="support-btn" id="openSupportModal"><i class="fas fa-headset"></i> support@celebmingle.com</a>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="index.html" class="back-home-btn" style="display: inline-block; text-align: center; padding: 14px 32px; background: linear-gradient(135deg, #2c3e50, #3498db); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2); font-size: 1rem;">
+                <i class="fas fa-home" style="margin-right: 8px;"></i> Back to Home
+            </a>
+        </div>
+        <!-- Support Modal -->
+        <div id="supportModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(24,28,43,0.92);z-index:1000;align-items:center;justify-content:center;">
+            <div style="background:#23243a;padding:32px 24px 24px 24px;border-radius:14px;max-width:370px;width:90vw;box-shadow:0 4px 32px #000a;position:relative;">
+            <script>
+                // Auto-open support modal if URL parameter exists
+                window.addEventListener('load', function() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    if (urlParams.get('openSupport') === 'true') {
+                        setTimeout(() => {
+                            document.getElementById('supportModal').style.display = 'flex';
+                            document.getElementById('supportEmail').focus();
+                        }, 500);
+                    }
+                });
+            </script>
+                <button id="closeSupportModal" style="position:absolute;top:12px;right:16px;background:none;border:none;color:#bdbdbd;font-size:1.3rem;cursor:pointer;">&times;</button>
+                <h3 style="color:#90caf9;text-align:center;margin-bottom:18px;font-size:1.15rem;">Contact Support</h3>
+                <form id="supportForm">
+                    <label for="supportMessage">Your Message (max 200 words):</label>
+                    <textarea id="supportMessage" maxlength="1500" rows="5" style="width:100%;background:#181a20;color:#e0e0e0;border:1px solid #35374a;border-radius:7px;padding:10px 8px;margin-bottom:12px;resize:vertical;"></textarea>
+                    <label for="supportEmail">Your Email:</label>
+                    <input type="email" id="supportEmail" required style="width:100%;background:#181a20;color:#e0e0e0;border:1px solid #35374a;border-radius:7px;padding:10px 8px;margin-bottom:12px;">
+                    <labe for="supportPhone">Phone Number:</label>
+                    <input type="tel" id="supportPhone" maxlength="19" style="width:100%;background:#181a20;color:#e0e0e0;border:1px solid #35374a;border-radius:7px;padding:10px 8px;margin-bottom:18px;" autocomplete="off" autocorrect="off" spellcheck="false">
+                    <button type="submit" class="pay-btn" style="margin-top:0;">Send Message</button>
+                    <a href="index.html" class="back-home-btn" style="display: block; text-align: center; margin-top: 16px; padding: 12px; background: linear-gradient(135deg, #2c3e50, #3498db); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2); font-size: 0.95rem;">
+                        <i class="fas fa-home" style="margin-right: 8px;"></i> Back to Home
+                    </a>
+                </form>
+                <style>
+                    .back-home-btn:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+                        background: linear-gradient(135deg, #3498db, #2c3e50);
+                    }
+                </style>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="scripts/cloudinary.js"></script>
+    <script src="scripts/payment.js"></script>
+    <script src="scripts/email.js"></script>
+    <script>
+// Modal open/close logic
+const openModalBtn = document.getElementById('openSupportModal');
+const supportModal = document.getElementById('supportModal');
+const closeModalBtn = document.getElementById('closeSupportModal');
+if(openModalBtn && supportModal && closeModalBtn) {
+    openModalBtn.onclick = function(e) { e.preventDefault(); supportModal.style.display = 'flex'; };
+    closeModalBtn.onclick = function() { supportModal.style.display = 'none'; };
+    window.onclick = function(event) { if(event.target === supportModal) supportModal.style.display = 'none'; };
+}
+// Toast message
+function showToast(message, opts = {}) {
+    let toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.position = 'fixed';
+    toast.style.left = '50%';
+    toast.style.top = opts.center ? '50%' : '';
+    toast.style.bottom = opts.center ? '' : '32px';
+    toast.style.transform = opts.center ? 'translate(-50%, -50%)' : 'translateX(-50%)';
+    toast.style.background = opts.green ? '#27ae60' : '#23243a';
+    toast.style.color = '#fff';
+    toast.style.padding = opts.green ? '32px 48px' : '16px 32px';
+    toast.style.borderRadius = '16px';
+    toast.style.fontSize = opts.green ? '2.2rem' : '1.05rem';
+    toast.style.fontWeight = opts.green ? 'bold' : 'normal';
+    toast.style.boxShadow = '0 2px 24px #000a';
+    toast.style.zIndex = '2000';
+    toast.style.opacity = '0';
+    toast.style.transition = 'opacity 0.4s';
+    toast.style.display = 'flex';
+    toast.style.alignItems = 'center';
+    toast.style.justifyContent = 'center';
+    if (opts.green) {
+        // Add ticking animation
+        let tick = document.createElement('span');
+        tick.innerHTML = `<svg width='38' height='38' viewBox='0 0 38 38' style='margin-right:18px;'><circle cx='19' cy='19' r='18' stroke='#fff' stroke-width='3' fill='none' opacity='0.2'/><polyline points='11,20 17,26 27,14' style='fill:none;stroke:#fff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;'><animate attributeName='stroke-dashoffset' from='40' to='0' dur='0.7s' fill='freeze'/></polyline></svg>`;
+        toast.prepend(tick);
+    }
+    document.body.appendChild(toast);
+    setTimeout(() => { toast.style.opacity = '1'; }, 100);
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => { toast.remove(); }, 400);
+    }, opts.duration || 3500);
+}
+document.getElementById('supportForm').onsubmit = function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    btn.style.background = '#888';
+    setTimeout(() => {
+        btn.textContent = 'Sent';
+        btn.style.background = '#27ae60';
+        btn.style.color = '#fff';
+        setTimeout(() => {
+            supportModal.style.display = 'none';
+            btn.textContent = 'Send Message';
+            btn.style.background = '';
+            btn.style.color = '';
+            btn.disabled = false;
+            document.getElementById('supportForm').reset();
+            showToast('Support would get back to you via email soon.');
+        }, 2000);
+    }, 3000);
+};
+const wallets = {
+    btc: 'bc1q4wfycd8xwfzn5y6zk77qsmjprf03wlx5gwf72x',
+    eth: '0x0eC034FeD1C9F4f63E16003c1DC655E777481894',
+    usdt: 'TB41UwSV6EXXQF7BrYCS1anuNqNBP8Lxgv'
+};
+const cryptoType = document.getElementById('cryptoType');
+const walletAddress = document.getElementById('walletAddress');
+const cryptoNetwork = document.getElementById('cryptoNetwork');
+if (cryptoType && walletAddress && cryptoNetwork) {
+    function updateWalletAddress() {
+        if (cryptoType.value === 'btc') {
+            walletAddress.textContent = wallets.btc;
+        } else if (cryptoType.value === 'eth') {
+            walletAddress.textContent = wallets.eth;
+        } else if (cryptoType.value === 'usdt') {
+            walletAddress.textContent = wallets.usdt;
+        }
+    }
+    cryptoType.addEventListener('change', updateWalletAddress);
+    cryptoNetwork.addEventListener('change', function() {
+        if (cryptoNetwork.value.startsWith('btc')) {
+            walletAddress.textContent = wallets.btc;
+        } else if (cryptoNetwork.value.startsWith('eth')) {
+            walletAddress.textContent = wallets.eth;
+        } else if (cryptoNetwork.value.startsWith('usdt')) {
+            walletAddress.textContent = wallets.usdt;
+        }
+    });
+    // Set initial wallet address
+    updateWalletAddress();
+}
+// Phone input validation: allow only numbers and special characters, block alphabets, max 19, no autocomplete
+const supportPhone = document.getElementById('supportPhone');
+if (supportPhone) {
+    supportPhone.addEventListener('keydown', function(e) {
+        const allowedKeys = [
+            'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Home', 'End',
+        ];
+        // Allow numbers
+        if (e.key >= '0' && e.key <= '9') return;
+        // Allow special characters (common phone symbols)
+        if (['+', '-', '(', ')', ' ', '.', '#', '*'].includes(e.key)) return;
+        // Allow control keys
+        if (allowedKeys.includes(e.key)) return;
+        // Block all alphabetic input
+        if (/^[a-zA-Z]$/.test(e.key)) {
+            e.preventDefault();
+            return;
+        }
+        // Block all other input
+        if (e.key.length === 1 && !/[^a-zA-Z]/.test(e.key)) {
+            e.preventDefault();
+        }
+    });
+    supportPhone.addEventListener('input', function(e) {
+        // Remove all alphabetic characters
+        let v = this.value;
+        v = v.replace(/[a-zA-Z]/g, '');
+        this.value = v.slice(0, 19); // Enforce max length
+    });
+}
+document.getElementById('cancelPremiumPayment').onclick = function() {
+    showToast('Payment process cancelled.');
+    setTimeout(function() {
+        showToast('Redirecting...');
+        setTimeout(function() {
+            window.location.href = 'index.html';
+        }, 1200);
+    }, 1800);
+};
+document.getElementById('paymentForm').onsubmit = function(e) {
+    e.preventDefault();
+    var proofImage = document.getElementById('proofImage');
+    if (proofImage && proofImage.files && proofImage.files.length > 0) {
+        showToast('You will receive your membership login and password via your registered email. Do well to check your email regularly.', {center:true, duration:15000});
+        setTimeout(function() {
+            showToast('Submitted', {green:true, duration:1500, center:true});
+            setTimeout(function() {
+                showToast('Redirecting...', {center:true, duration:2000});
+                setTimeout(function() {
+                    window.location.href = 'signin.html';
+                }, 2000);
+            }, 1500);
+        }, 7000);
+    } else {
+        showToast('Please upload proof of transaction.');
+    }
+};
+</script>
+</body>
+</html>

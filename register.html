@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Registration | Join Us</title>
+    <link rel="stylesheet" href="styles/register.css">
+    <link rel="stylesheet" href="styles/register-enhancements.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .warning {
+            border-color: #ff6b6b !important;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: transparent !important;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c5a35a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        select:hover {
+            border-color: #c5a35a;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #c5a35a;
+            box-shadow: 0 0 10px rgba(197, 163, 90, 0.2);
+        }
+
+        select:disabled {
+            background-color: transparent !important;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        select option {
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        /* Loading state animation */
+        select.loading {
+            background-color: transparent !important;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA1MCI+PHBhdGggZmlsbD0iI2M1YTM1YSIgZD0iTTI1LDVBMjAuMTQsMjAuMTQsMCwwLDAsNSwyNUEyMCwyMCwwLDAsMCwyNSw0NSwyMCwyMCwwLDAsMCw0NSwyNSwyMC4xNCwyMC4xNCwwLDAsMCwyNSw1Wm0wLDM1QTE1LDE1LDAsMSwxLDQwLDI1LDE1LDE1LDAsMCwxLDI1LDQwWiI+PGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGZyb209IjAgMjUgMjUiIHRvPSIzNjAgMjUgMjUiIGR1cj0iMC42cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiLz48L3BhdGg+PC9zdmc+');
+        }
+
+        /* Custom scrollbar for dropdowns */
+        select::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        select::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        select::-webkit-scrollbar-thumb {
+            background: #c5a35a;
+            border-radius: 4px;
+        }
+
+        select::-webkit-scrollbar-thumb:hover {
+            background: #b18d3d;
+        }
+
+        .password-input-wrapper.password-visible input {
+            background-color: rgba(15, 15, 15, 0.85) !important;
+            border-color: #d4af37 !important;
+            color: #fff !important;
+        }
+        .password-input-wrapper .password-toggle[aria-label="Hide password"] {
+            color: #d4af37 !important;
+        }
+        .password-input-wrapper .password-toggle[aria-label="Hide password"]:hover {
+            color: #f4c842 !important;
+            background-color: rgba(212, 175, 55, 0.15) !important;
+        }
+
+        /* Force transparent background for all select states */
+        select, select:focus, select:hover, select:active, select:disabled, select.loading {
+            background-color: transparent !important;
+        }
+
+        /* Override any inline styles that might set background */
+        #country, #state, #city, #countryCode {
+            background-color: transparent !important;
+        }
+
+        /* Mobile-specific critical styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0.5rem !important;
+                gap: 0.5rem !important;
+            }
+            
+            .form-container {
+                padding: 1rem !important;
+                margin: 0 !important;
+            }
+            
+            .logo h1 {
+                font-size: 1.8rem !important;
+            }
+            
+            .form-tabs {
+                overflow-x: auto !important;
+                scrollbar-width: none !important;
+                -ms-overflow-style: none !important;
+            }
+            
+            .form-tabs::-webkit-scrollbar {
+                display: none !important;
+            }
+            
+            .tab {
+                white-space: nowrap !important;
+                flex-shrink: 0 !important;
+                padding: 0.4rem 0.8rem !important;
+                font-size: 0.85rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0.3rem !important;
+            }
+            
+            .form-container {
+                padding: 0.8rem !important;
+                border-radius: 8px !important;
+            }
+            
+            .logo h1 {
+                font-size: 1.6rem !important;
+            }
+            
+            .tab {
+                padding: 0.3rem 0.6rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            input, select {
+                height: 38px !important;
+                padding: 0.5rem 0.7rem !important;
+                font-size: 0.85rem !important;
+            }
+            
+            label {
+                font-size: 0.8rem !important;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            input, select, button {
+                min-height: 44px !important;
+            }
+            
+            .tab {
+                min-height: 44px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+        }
+
+        .back-home-btn.premium-btn {
+            background: linear-gradient(90deg, #d4af37 0%, #c5a35a 100%);
+            color: #fff !important;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 28px 10px 18px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 12px rgba(197,163,90,0.12);
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+            margin-top: 1.2rem;
+            text-decoration: none;
+        }
+        .back-home-btn.premium-btn:hover, .back-home-btn.premium-btn:focus {
+            background: linear-gradient(90deg, #c5a35a 0%, #d4af37 100%);
+            color: #fff !important;
+            box-shadow: 0 4px 18px rgba(197,163,90,0.18);
+            text-decoration: none;
+        }
+        .back-home-btn.premium-btn i {
+            color: #fff !important;
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        @media (max-width: 480px) {
+            .back-home-btn.premium-btn {
+                font-size: 0.95rem;
+                padding: 8px 18px 8px 12px;
+            }
+        }
+
+        .pay-btn {
+            background: linear-gradient(90deg, #d4af37 0%, #c5a35a 100%);
+            color: #fff !important;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 36px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            box-shadow: 0 2px 16px rgba(197,163,90,0.14);
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            margin-top: 1.2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        }
+        .pay-btn:hover, .pay-btn:focus {
+            background: linear-gradient(90deg, #c5a35a 0%, #d4af37 100%);
+            color: #fff !important;
+            box-shadow: 0 4px 22px rgba(197,163,90,0.22);
+            outline: none;
+        }
+        @media (max-width: 480px) {
+            .pay-btn {
+                font-size: 1rem;
+                padding: 10px 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-home-btn premium-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <div class="logo">
+                    <h1>CELEB<span>MINGLE</span></h1>
+                </div>
+                <h2>Premium Membership Registration</h2>
+                <p>Join our exclusive community of distinguished members</p>
+            </div>
+
+            <form id="registrationForm">
+                <div class="form-tabs">
+                    <button type="button" class="tab active" data-tab="personal">Personal Details</button>
+                    <button type="button" class="tab" data-tab="contact">Contact Information</button>
+                    <button type="button" class="tab" data-tab="address">Address Details</button>
+                </div>
+
+                <div class="form-section active" id="personal-section">
+                    <div class="form-row three-columns">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" 
+                                   pattern="[A-Za-z\s]*" 
+                                   onkeypress="return /[A-Za-z\s]/.test(event.key)"
+                                   oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')"
+                                   required autocomplete="off">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Enter your last name only" 
+                                   pattern="[A-Za-z\s]*" 
+                                   onkeypress="return /[A-Za-z\s]/.test(event.key)"
+                                   oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')"
+                                   required autocomplete="off">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Select gender</option>
+                                <option value="cisgender-male">Male</option>
+                                <option value="cisgender-female">Female</option>
+                                <option value="transgender-male">Transgender Male (Trans Man)</option>
+                                <option value="transgender-female">Transgender Female 
+                                    (Trans Woman)</option>
+                                
+                               >
+                               
+                                
+                                <option value="prefer-not-say">Prefer not to say</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row birthday-group">
+                        <div class="form-group">
+                            <label for="birthYear">Year of Birth</label>
+                            <select id="birthYear" name="birthYear" required>
+                                <option value="">Select year</option>
+                                <option value="2025">2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option>
+                                <option value="2012">2012</option>
+                                <option value="2011">2011</option>
+                                <option value="2010">2010</option>
+                                <option value="2009">2009</option>
+                                <option value="2008">2008</option>
+                                <option value="2007">2007</option>
+                                <option value="2006">2006</option>
+                                <option value="2005">2005</option>
+                                <option value="2004">2004</option>
+                                <option value="2003">2003</option>
+                                <option value="2002">2002</option>
+                                <option value="2001">2001</option>
+                                <option value="2000">2000</option>
+                                <option value="1999">1999</option>
+                                <option value="1998">1998</option>
+                                <option value="1997">1997</option>
+                                <option value="1996">1996</option>
+                                <option value="1995">1995</option>
+                                <option value="1994">1994</option>
+                                <option value="1993">1993</option>
+                                <option value="1992">1992</option>
+                                <option value="1991">1991</option>
+                                <option value="1990">1990</option>
+                                <option value="1989">1989</option>
+                                <option value="1988">1988</option>
+                                <option value="1987">1987</option>
+                                <option value="1986">1986</option>
+                                <option value="1985">1985</option>
+                                <option value="1984">1984</option>
+                                <option value="1983">1983</option>
+                                <option value="1982">1982</option>
+                                <option value="1981">1981</option>
+                                <option value="1980">1980</option>
+                                <option value="1979">1979</option>
+                                <option value="1978">1978</option>
+                                <option value="1977">1977</option>
+                                <option value="1976">1976</option>
+                                <option value="1975">1975</option>
+                                <option value="1974">1974</option>
+                                <option value="1973">1973</option>
+                                <option value="1972">1972</option>
+                                <option value="1971">1971</option>
+                                <option value="1970">1970</option>
+                                <option value="1969">1969</option>
+                                <option value="1968">1968</option>
+                                <option value="1967">1967</option>
+                                <option value="1966">1966</option>
+                                <option value="1965">1965</option>
+                                <option value="1964">1964</option>
+                                <option value="1963">1963</option>
+                                <option value="1962">1962</option>
+                                <option value="1961">1961</option>
+                                <option value="1960">1960</option>
+                                <option value="1959">1959</option>
+                                <option value="1958">1958</option>
+                                <option value="1957">1957</option>
+                                <option value="1956">1956</option>
+                                <option value="1955">1955</option>
+                                <option value="1954">1954</option>
+                                <option value="1953">1953</option>
+                                <option value="1952">1952</option>
+                                <option value="1951">1951</option>
+                                <option value="1950">1950</option>
+                                <option value="1949">1949</option>
+                                <option value="1948">1948</option>
+                                <option value="1947">1947</option>
+                                <option value="1946">1946</option>
+                                <option value="1945">1945</option>
+                                <option value="1944">1944</option>
+                                <option value="1943">1943</option>
+                                <option value="1942">1942</option>
+                                <option value="1941">1941</option>
+                                <option value="1940">1940</option>
+                                <option value="1939">1939</option>
+                                <option value="1938">1938</option>
+                                <option value="1937">1937</option>
+                                <option value="1936">1936</option>
+                                <option value="1935">1935</option>
+                                <option value="1934">1934</option>
+                                <option value="1933">1933</option>
+                                <option value="1932">1932</option>
+                                <option value="1931">1931</option>
+                                <option value="1930">1930</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="birthMonth">Month of Birth</label>
+                            <select id="birthMonth" name="birthMonth" required>
+                                <option value="">Select month</option>
+                                <option value="01">January</option>
+                                <option value="02">February</option>
+                                <option value="03">March</option>
+                                <option value="04">April</option>
+                                <option value="05">May</option>
+                                <option value="06">June</option>
+                                <option value="07">July</option>
+                                <option value="08">August</option>
+                                <option value="09">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Create Password</label>
+                            <div class="password-input-container">
+                                <div class="password-input-wrapper">
+                                    <input type="password" id="password" name="password" 
+                                           placeholder="Create a strong password" 
+                                           autocomplete="new-password"
+                                           data-lpignore="true"
+                                           data-form-type="password"
+                                           spellcheck="false"
+                                           autocapitalize="none"
+                                           required>
+                                    <button type="button" class="password-toggle" tabindex="-1">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <div class="password-input-container">
+                                <div class="password-input-wrapper">
+                                    <input type="password" id="confirmPassword" name="confirmPassword" 
+                                           placeholder="Confirm your password" 
+                                           autocomplete="new-password"
+                                           data-lpignore="true"
+                                           data-form-type="password"
+                                           spellcheck="false"
+                                           autocapitalize="none"
+                                           required>
+                                    <button type="button" class="password-toggle" tabindex="-1">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" id="to-contact" class="btn next-btn">Next <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                
+
+
+
+                <div class="form-section" id="contact-section">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="alternativeEmail">Alternative Email <span class="optional">(optional)</span></label>
+                            <input type="email" id="alternativeEmail" name="alternativeEmail" placeholder="Alternative email address">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group phone-group">
+                            <label for="phone">Phone Number</label>
+                            <div class="phone-input-container">
+                                <select id="countryCode" name="countryCode" class="country-code-select" required>
+                                    <option value="">Select Country Code</option>
+                                    <optgroup label="Popular Countries">
+                                        <option value="+1">🇺🇸 +1 (United States)</option>
+                                        <option value="+1">🇨🇦 +1 (Canada)</option>
+                                        <option value="+44">🇬🇧 +44 (United Kingdom)</option>
+                                        <option value="+91">🇮🇳 +91 (India)</option>
+                                        <option value="+86">🇨🇳 +86 (China)</option>
+                                        <option value="+49">🇩🇪 +49 (Germany)</option>
+                                        <option value="+33">🇫🇷 +33 (France)</option>
+                                        <option value="+81">🇯🇵 +81 (Japan)</option>
+                                        <option value="+61">🇦🇺 +61 (Australia)</option>
+                                        <option value="+55">🇧🇷 +55 (Brazil)</option>
+                                    </optgroup>
+                                    <optgroup label="All Countries">
+                                        <option value="+7">��🇺 +7 (Russia)</option>
+                                        <option value="+20">🇪🇬 +20 (Egypt)</option>
+                                        <option value="+27">🇿🇦 +27 (South Africa)</option>
+                                        <option value="+30">🇬🇷 +30 (Greece)</option>
+                                        <option value="+31">🇳🇱 +31 (Netherlands)</option>
+                                        <option value="+32">��🇪 +32 (Belgium)</option>
+                                        <option value="+34">🇪🇸 +34 (Spain)</option>
+                                        <option value="+36">🇭🇺 +36 (Hungary)</option>
+                                        <option value="+39">🇮🇹 +39 (Italy)</option>
+                                        <option value="+40">🇷🇴 +40 (Romania)</option>
+                                        <option value="+41">🇨🇭 +41 (Switzerland)</option>
+                                        <option value="+43">🇦🇹 +43 (Austria)</option>
+                                        <option value="+45">🇩🇰 +45 (Denmark)</option>
+                                        <option value="+46">🇸🇪 +46 (Sweden)</option>
+                                        <option value="+47">🇳🇴 +47 (Norway)</option>
+                                        <option value="+48">🇵🇱 +48 (Poland)</option>
+                                        <option value="+51">🇵🇪 +51 (Peru)</option>
+                                        <option value="+52">🇲🇽 +52 (Mexico)</option>
+                                        <option value="+53">🇨🇺 +53 (Cuba)</option>
+                                        <option value="+54">🇦🇷 +54 (Argentina)</option>
+                                        <option value="+56">🇨🇱 +56 (Chile)</option>
+                                        <option value="+57">🇨🇴 +57 (Colombia)</option>
+                                        <option value="+58">🇻🇪 +58 (Venezuela)</option>
+                                        <option value="+60">🇲🇾 +60 (Malaysia)</option>
+                                        <option value="+62">🇮🇩 +62 (Indonesia)</option>
+                                        <option value="+63">🇵🇭 +63 (Philippines)</option>
+                                        <option value="+64">🇳🇿 +64 (New Zealand)</option>
+                                        <option value="+65">🇸🇬 +65 (Singapore)</option>
+                                        <option value="+66">🇹🇭 +66 (Thailand)</option>
+                                        <option value="+82">🇰🇷 +82 (South Korea)</option>
+                                        <option value="+84">🇻🇳 +84 (Vietnam)</option>
+                                        <option value="+90">🇹🇷 +90 (Turkey)</option>
+                                        <option value="+92">🇵🇰 +92 (Pakistan)</option>
+                                        <option value="+93">🇦🇫 +93 (Afghanistan)</option>
+                                        <option value="+94">🇱🇰 +94 (Sri Lanka)</option>
+                                        <option value="+95">🇲🇲 +95 (Myanmar)</option>
+                                        <option value="+98">🇮🇷 +98 (Iran)</option>
+                                    </optgroup>
+                                    <optgroup label="Africa & Middle East">
+                                        <option value="+212">🇲🇦 +212 (Morocco)</option>
+                                        <option value="+213">🇩🇿 +213 (Algeria)</option>
+                                        <option value="+216">🇹🇳 +216 (Tunisia)</option>
+                                        <option value="+218">🇱🇾 +218 (Libya)</option>
+                                        <option value="+220">🇬🇲 +220 (Gambia)</option>
+                                        <option value="+221">🇸🇳 +221 (Senegal)</option>
+                                        <option value="+222">🇲🇷 +222 (Mauritania)</option>
+                                        <option value="+223">🇲🇱 +223 (Mali)</option>
+                                        <option value="+224">🇬🇳 +224 (Guinea)</option>
+                                        <option value="+225">🇨🇮 +225 (Ivory Coast)</option>
+                                        <option value="+226">🇧🇫 +226 (Burkina Faso)</option>
+                                        <option value="+227">🇳🇪 +227 (Niger)</option>
+                                        <option value="+228">🇹🇬 +228 (Togo)</option>
+                                        <option value="+229">🇧🇯 +229 (Benin)</option>
+                                        <option value="+230">🇲🇺 +230 (Mauritius)</option>
+                                        <option value="+231">🇱🇷 +231 (Liberia)</option>
+                                        <option value="+232">🇸🇱 +232 (Sierra Leone)</option>
+                                        <option value="+233">🇬🇭 +233 (Ghana)</option>
+                                        <option value="+234">🇳🇬 +234 (Nigeria)</option>
+                                        <option value="+235">🇹🇩 +235 (Chad)</option>
+                                        <option value="+236">🇨🇫 +236 (Central African Republic)</option>
+                                        <option value="+237">🇨🇲 +237 (Cameroon)</option>
+                                        <option value="+238">🇨🇻 +238 (Cape Verde)</option>
+                                        <option value="+239">🇸🇹 +239 (São Tomé and Príncipe)</option>
+                                        <option value="+240">🇬🇶 +240 (Equatorial Guinea)</option>
+                                        <option value="+241">🇬🇦 +241 (Gabon)</option>
+                                        <option value="+242">🇨🇬 +242 (Republic of the Congo)</option>
+                                        <option value="+243">🇨🇩 +243 (Democratic Republic of the Congo)</option>
+                                        <option value="+244">🇦🇴 +244 (Angola)</option>
+                                        <option value="+245">🇬🇼 +245 (Guinea-Bissau)</option>
+    <option value="+246">🇮🇴 +246 (British Indian Ocean Territory)</option>
+    <option value="+248">🇸🇨 +248 (Seychelles)</option>
+    <option value="+249">🇸🇩 +249 (Sudan)</option>
+    <option value="+250">🇷🇼 +250 (Rwanda)</option>
+    <option value="+251">🇪🇹 +251 (Ethiopia)</option>
+    <option value="+252">🇸🇴 +252 (Somalia)</option>
+    <option value="+253">🇩🇯 +253 (Djibouti)</option>
+    <option value="+254">🇰🇪 +254 (Kenya)</option>
+    <option value="+255">🇹🇿 +255 (Tanzania)</option>
+    <option value="+256">🇺🇬 +256 (Uganda)</option>
+    <option value="+257">🇧🇮 +257 (Burundi)</option>
+    <option value="+258">🇲🇿 +258 (Mozambique)</option>
+    <option value="+260">🇿🇲 +260 (Zambia)</option>
+    <option value="+261">🇲🇬 +261 (Madagascar)</option>
+    <option value="+262">🇷🇪 +262 (Réunion)</option>
+    <option value="+263">🇿🇼 +263 (Zimbabwe)</option>
+    <option value="+264">🇳🇦 +264 (Namibia)</option>
+    <option value="+265">🇲🇼 +265 (Malawi)</option>
+    <option value="+266">🇱🇸 +266 (Lesotho)</option>
+    <option value="+267">🇧🇼 +267 (Botswana)</option>
+    <option value="+268">🇸🇿 +268 (Eswatini)</option>
+    <option value="+269">🇰🇲 +269 (Comoros)</option>
+                                    </optgroup>
+                                    <optgroup label="Europe & Others">
+    <option value="+290">🇸🇭 +290 (Saint Helena)</option>
+    <option value="+291">🇪🇷 +291 (Eritrea)</option>
+    <option value="+297">🇦🇼 +297 (Aruba)</option>
+    <option value="+298">🇫🇴 +298 (Faroe Islands)</option>
+    <option value="+299">🇬🇱 +299 (Greenland)</option>
+    <option value="+350">🇬🇮 +350 (Gibraltar)</option>
+    <option value="+351">🇵🇹 +351 (Portugal)</option>
+    <option value="+352">🇱🇺 +352 (Luxembourg)</option>
+    <option value="+353">🇮🇪 +353 (Ireland)</option>
+    <option value="+354">🇮🇸 +354 (Iceland)</option>
+    <option value="+355">🇦🇱 +355 (Albania)</option>
+    <option value="+356">🇲🇹 +356 (Malta)</option>
+    <option value="+357">🇨🇾 +357 (Cyprus)</option>
+    <option value="+358">🇫🇮 +358 (Finland)</option>
+    <option value="+359">🇧🇬 +359 (Bulgaria)</option>
+    <option value="+370">🇱🇹 +370 (Lithuania)</option>
+    <option value="+371">🇱🇻 +371 (Latvia)</option>
+    <option value="+372">🇪🇪 +372 (Estonia)</option>
+    <option value="+373">🇲🇩 +373 (Moldova)</option>
+    <option value="+374">🇦🇲 +374 (Armenia)</option>
+    <option value="+375">🇧🇾 +375 (Belarus)</option>
+    <option value="+376">🇦🇩 +376 (Andorra)</option>
+    <option value="+377">🇲🇨 +377 (Monaco)</option>
+    <option value="+378">🇸🇲 +378 (San Marino)</option>
+    <option value="+380">🇺🇦 +380 (Ukraine)</option>
+    <option value="+381">🇷🇸 +381 (Serbia)</option>
+    <option value="+382">🇲🇪 +382 (Montenegro)</option>
+    <option value="+383">🇽🇰 +383 (Kosovo)</option>
+    <option value="+385">🇭🇷 +385 (Croatia)</option>
+    <option value="+386">🇸🇮 +386 (Slovenia)</option>
+    <option value="+387">🇧🇦 +387 (Bosnia and Herzegovina)</option>
+    <option value="+389">🇲🇰 +389 (North Macedonia)</option>
+    <option value="+420">🇨🇿 +420 (Czech Republic)</option>
+    <option value="+421">🇸🇰 +421 (Slovakia)</option>
+    <option value="+423">🇱🇮 +423 (Liechtenstein)</option>
+                                    </optgroup>
+                                    <optgroup label="Americas & Pacific">
+    <option value="+500">🇫🇰 +500 (Falkland Islands)</option>
+    <option value="+501">🇧🇿 +501 (Belize)</option>
+    <option value="+502">🇬🇹 +502 (Guatemala)</option>
+    <option value="+503">🇸🇻 +503 (El Salvador)</option>
+    <option value="+504">🇭🇳 +504 (Honduras)</option>
+    <option value="+505">🇳🇮 +505 (Nicaragua)</option>
+    <option value="+506">🇨🇷 +506 (Costa Rica)</option>
+    <option value="+507">🇵🇦 +507 (Panama)</option>
+    <option value="+508">🇵🇲 +508 (Saint Pierre and Miquelon)</option>
+    <option value="+509">🇭🇹 +509 (Haiti)</option>
+    <option value="+590">🇬🇵 +590 (Guadeloupe)</option>
+    <option value="+591">🇧🇴 +591 (Bolivia)</option>
+    <option value="+592">🇬🇾 +592 (Guyana)</option>
+    <option value="+593">🇪🇨 +593 (Ecuador)</option>
+    <option value="+594">🇬🇫 +594 (French Guiana)</option>
+    <option value="+595">🇵🇾 +595 (Paraguay)</option>
+    <option value="+596">🇲🇶 +596 (Martinique)</option>
+    <option value="+597">🇸🇷 +597 (Suriname)</option>
+    <option value="+598">🇺🇾 +598 (Uruguay)</option>
+    <option value="+599">🇨🇼 +599 (Curaçao)</option>
+    <option value="+670">🇹🇱 +670 (East Timor)</option>
+    <option value="+672">🇦🇶 +672 (Antarctica)</option>
+    <option value="+673">🇧🇳 +673 (Brunei)</option>
+    <option value="+674">🇳🇷 +674 (Nauru)</option>
+    <option value="+675">🇵🇬 +675 (Papua New Guinea)</option>
+    <option value="+676">🇹🇴 +676 (Tonga)</option>
+    <option value="+677">🇸🇧 +677 (Solomon Islands)</option>
+    <option value="+678">🇻🇺 +678 (Vanuatu)</option>
+    <option value="+679">🇫🇯 +679 (Fiji)</option>
+    <option value="+680">🇵🇼 +680 (Palau)</option>
+    <option value="+681">🇼🇫 +681 (Wallis and Futuna)</option>
+    <option value="+682">🇨🇰 +682 (Cook Islands)</option>
+    <option value="+683">🇳🇺 +683 (Niue)</option>
+    <option value="+684">🇦🇸 +684 (American Samoa)</option>
+    <option value="+685">🇼🇸 +685 (Samoa)</option>
+    <option value="+686">🇰🇮 +686 (Kiribati)</option>
+    <option value="+687">🇳🇨 +687 (New Caledonia)</option>
+    <option value="+688">🇹🇻 +688 (Tuvalu)</option>
+    <option value="+689">🇵🇫 +689 (French Polynesia)</option>
+    <option value="+690">🇹🇰 +690 (Tokelau)</option>
+    <option value="+691">🇫🇲 +691 (Micronesia)</option>
+    <option value="+692">🇲🇭 +692 (Marshall Islands)</option>
+                                    </optgroup>
+                                    <optgroup label="Asia & Others">
+    <option value="+850">🇰🇵 +850 (North Korea)</option>
+    <option value="+852">🇭🇰 +852 (Hong Kong)</option>
+    <option value="+853">🇲🇴 +853 (Macau)</option>
+    <option value="+855">🇰🇭 +855 (Cambodia)</option>
+    <option value="+856">🇱🇦 +856 (Laos)</option>
+    <option value="+880">🇧🇩 +880 (Bangladesh)</option>
+    <option value="+886">🇹🇼 +886 (Taiwan)</option>
+    <option value="+960">🇲🇻 +960 (Maldives)</option>
+    <option value="+961">🇱🇧 +961 (Lebanon)</option>
+    <option value="+962">🇯🇴 +962 (Jordan)</option>
+    <option value="+963">🇸🇾 +963 (Syria)</option>
+    <option value="+964">🇮🇶 +964 (Iraq)</option>
+    <option value="+965">🇰🇼 +965 (Kuwait)</option>
+    <option value="+966">🇸🇦 +966 (Saudi Arabia)</option>
+    <option value="+967">🇾🇪 +967 (Yemen)</option>
+    <option value="+968">🇴🇲 +968 (Oman)</option>
+    <option value="+970">🇵🇸 +970 (Palestine)</option>
+    <option value="+971">🇦🇪 +971 (United Arab Emirates)</option>
+    <option value="+972">🇮🇱 +972 (Israel)</option>
+    <option value="+973">🇧🇭 +973 (Bahrain)</option>
+    <option value="+974">🇶🇦 +974 (Qatar)</option>
+    <option value="+975">🇧🇹 +975 (Bhutan)</option>
+    <option value="+976">🇲🇳 +976 (Mongolia)</option>
+    <option value="+977">🇳🇵 +977 (Nepal)</option>
+    <option value="+992">🇹🇯 +992 (Tajikistan)</option>
+    <option value="+993">🇹🇲 +993 (Turkmenistan)</option>
+    <option value="+994">🇦🇿 +994 (Azerbaijan)</option>
+    <option value="+995">🇬🇪 +995 (Georgia)</option>
+    <option value="+996">🇰🇬 +996 (Kyrgyzstan)</option>
+    <option value="+998">🇺🇿 +998 (Uzbekistan)</option>
+                                    </optgroup>
+</select>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" 
+                                       pattern="[0-9\s\-\+\(\)\.]*" 
+                                       inputmode="tel"
+                                       maxlength="20"
+                                       onkeypress="return /[0-9\s\-\+\(\)\.#\*]/.test(event.key)"
+                                       oninput="this.value = this.value.replace(/[^0-9\s\-\+\(\)\.#\*]/g, ''); formatPhoneInput(this)"
+                                       required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="preferredContact">Preferred Contact Method</label>
+                            <select id="preferredContact" name="preferredContact" required>
+                                <option value="">Select preferred contact</option>
+                                <option value="email">Email</option>
+                                <option value="phone">Phone</option>
+                                <option value="both">Both</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" id="back-to-personal" class="btn back-btn"><i class="fas fa-chevron-left"></i> Back</button>
+                        <button type="button" id="to-address" class="btn next-btn">Next <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                
+                <div class="form-section" id="address-section">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <select id="country" name="country" required>
+                                <option value="">Select country</option>
+                                <!-- Countries will be populated by JavaScript -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="state">State/Province</label>
+                            <select id="state" name="state" required>
+                                <option value="">Select state/province</option>
+                                <!-- States will be populated by JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group city-group">
+                            <label for="city">City</label>
+                            <select id="city" name="city" required>
+                                <option value="">Select city</option>
+                                <!-- Cities will be populated by JavaScript -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="postalCode">Postal Code</label>
+                            <input type="text" id="postalCode" name="postalCode" placeholder="Enter postal code" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="streetAddress">Street Address</label>
+                        <input type="text" id="streetAddress" name="streetAddress" placeholder="e.g., 123 Luxury Avenue" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="addressLine2">Address Line 2 <span class="optional">(optional)</span></label>
+                        <input type="text" id="addressLine2" name="addressLine2" placeholder="Apt, Suite, Unit, Building (optional)">
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">Subscribe to our newsletter for updates and exclusive offers</label>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="marketing" name="marketing">
+                        <label for="marketing">I agree to receive marketing communications</label>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="termsConditions" name="termsConditions" required>
+                        <label for="termsConditions">I agree to the <a href="#" class="gold-link">Terms & Conditions</a> and <a href="#" class="gold-link">Privacy Policy</a></label>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" id="back-to-contact" class="btn back-btn"><i class="fas fa-chevron-left"></i> Back</button>
+                            <button type="submit" class="pay-btn">Become a Member</button>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="login-links">
+                <p>Already have an account? <a href="signin.html" class="gold-link">Sign In</a></p>
+                <p><a href="#" class="gold-link forgot-password">Forgot Password?</a></p>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="sidebar-content">
+                <h3>Premium Membership Benefits</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Exclusive access to VIP events</li>
+                    <li><i class="fas fa-check-circle"></i> Priority customer service</li>
+                    <li><i class="fas fa-check-circle"></i> Personalized recommendations</li>
+                    <li><i class="fas fa-check-circle"></i> Special member-only discounts</li>
+                    <li><i class="fas fa-check-circle"></i> Advanced profile features</li>
+                </ul>
+                <div class="testimonial">
+                    <p>"Joining the premium membership was the best decision I made this year. The exclusive benefits are truly exceptional."</p>
+                    <div class="testimonial-author">
+                        <span>— Sophia Laurent</span>
+                        <span class="member-type">Platinum Member</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="forgotPasswordModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Reset Your Password</h3>
+            <p>Please enter your email address to receive password reset instructions.</p>
+            <form id="forgotPasswordForm">
+                <div class="form-group">
+                    <label for="resetEmail">Email Address</label>
+                    <input type="email" id="resetEmail" name="resetEmail" required>
+                </div>
+                <button type="submit" class="btn submit-btn">Send Reset Link</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Terms and Conditions Modal -->
+    <div class="modal" id="termsModal">
+        <div class="modal-content terms-modal">
+            <div class="modal-header">
+                <h3>Terms & Conditions</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="terms-content">
+                    <h4>1. Acceptance of Terms</h4>
+                    <p>By accessing and using CelebMingle's premium membership services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our services.</p>
+
+                    <h4>2. Premium Membership</h4>
+                    <p>Your premium membership grants you access to exclusive features including:</p>
+                    <ul>
+                        <li>VIP event access and priority booking</li>
+                        <li>Enhanced profile visibility and features</li>
+                        <li>Priority customer support</li>
+                        <li>Exclusive member-only content and offers</li>
+                        <li>Advanced matching algorithms</li>
+                    </ul>
+
+                    <h4>3. User Responsibilities</h4>
+                    <p>As a premium member, you agree to:</p>
+                    <ul>
+                        <li>Provide accurate and truthful information</li>
+                        <li>Maintain the confidentiality of your account credentials</li>
+                        <li>Respect other members and maintain appropriate conduct</li>
+                        <li>Not use the platform for any illegal or unauthorized purposes</li>
+                        <li>Report any suspicious or inappropriate behavior</li>
+                    </ul>
+
+                    <h4>4. Payment and Billing</h4>
+                    <p>Premium membership fees are charged according to your selected plan. All payments are processed securely through our payment partners. Membership fees are non-refundable except where required by law.</p>
+
+                    <h4>5. Privacy and Data Protection</h4>
+                    <p>We are committed to protecting your privacy. Your personal information is handled in accordance with our Privacy Policy, which forms an integral part of these terms.</p>
+
+                    <h4>6. Intellectual Property</h4>
+                    <p>All content, features, and functionality of CelebMingle are owned by us and are protected by copyright, trademark, and other intellectual property laws.</p>
+
+                    <h4>7. Limitation of Liability</h4>
+                    <p>CelebMingle shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services.</p>
+
+                    <h4>8. Termination</h4>
+                    <p>We reserve the right to terminate or suspend your membership at any time for violation of these terms or for any other reason at our sole discretion.</p>
+
+                    <h4>9. Changes to Terms</h4>
+                    <p>We may update these terms from time to time. Continued use of our services after changes constitutes acceptance of the modified terms.</p>
+
+                    <h4>10. Contact Information</h4>
+                    <p>For questions regarding these terms, please contact us at legal@celebmingle.com or through our customer support channels.</p>
+
+                    <p class="last-updated">Last updated: June 26, 2025</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn close-terms-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal" id="privacyModal">
+        <div class="modal-content privacy-modal">
+            <div class="modal-header">
+                <h3>Privacy Policy</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="privacy-content">
+                    <h4>1. Information We Collect</h4>
+                    <p>We collect information you provide directly to us, including:</p>
+                    <ul>
+                        <li>Personal identification information (name, email, phone number)</li>
+                        <li>Profile information and preferences</li>
+                        <li>Payment and billing information</li>
+                        <li>Communication and interaction data</li>
+                        <li>Technical information about your device and usage</li>
+                    </ul>
+
+                    <h4>2. How We Use Your Information</h4>
+                    <p>We use your information to:</p>
+                    <ul>
+                        <li>Provide and improve our premium services</li>
+                        <li>Process payments and manage your membership</li>
+                        <li>Communicate with you about your account and our services</li>
+                        <li>Personalize your experience and provide recommendations</li>
+                        <li>Ensure platform security and prevent fraud</li>
+                        <li>Comply with legal obligations</li>
+                    </ul>
+
+                    <h4>3. Information Sharing</h4>
+                    <p>We do not sell, trade, or rent your personal information to third parties. We may share your information only in the following circumstances:</p>
+                    <ul>
+                        <li>With your explicit consent</li>
+                        <li>With trusted service providers who assist in our operations</li>
+                        <li>When required by law or legal process</li>
+                        <li>To protect our rights, property, or safety</li>
+                    </ul>
+
+                    <h4>4. Data Security</h4>
+                    <p>We implement industry-standard security measures to protect your personal information, including:</p>
+                    <ul>
+                        <li>Encryption of sensitive data in transit and at rest</li>
+                        <li>Regular security audits and monitoring</li>
+                        <li>Secure payment processing</li>
+                        <li>Access controls and authentication measures</li>
+                    </ul>
+
+                    <h4>5. Your Rights and Choices</h4>
+                    <p>You have the right to:</p>
+                    <ul>
+                        <li>Access and update your personal information</li>
+                        <li>Request deletion of your data (subject to legal requirements)</li>
+                        <li>Opt out of marketing communications</li>
+                        <li>Request data portability</li>
+                        <li>File complaints with relevant authorities</li>
+                    </ul>
+
+                    <h4>6. Cookies and Tracking</h4>
+                    <p>We use cookies and similar technologies to enhance your experience, analyze usage patterns, and provide personalized content. You can manage cookie preferences through your browser settings.</p>
+
+                    <h4>7. Third-Party Services</h4>
+                    <p>Our platform may integrate with third-party services. This privacy policy does not cover the practices of third parties, and we encourage you to review their privacy policies.</p>
+
+                    <h4>8. International Data Transfers</h4>
+                    <p>Your information may be transferred to and processed in countries other than your country of residence. We ensure appropriate safeguards are in place for such transfers.</p>
+
+                    <h4>9. Children's Privacy</h4>
+                    <p>Our services are not intended for individuals under 18 years of age. We do not knowingly collect personal information from children.</p>
+
+                    <h4>10. Changes to Privacy Policy</h4>
+                    <p>We may update this privacy policy periodically. We will notify you of significant changes through our platform or by email.</p>
+
+                    <h4>11. Contact Us</h4>
+                    <p>For privacy-related questions or concerns, contact us at:</p>
+                    <ul>
+                        <li>Email: privacy@celebmingle.com</li>
+                        <li>Data Protection Officer: dpo@celebmingle.com</li>
+                        <li>Mailing Address: CelebMingle Privacy Team, 123 Luxury Avenue, Premium City, PC 12345</li>
+                    </ul>
+
+                    <p class="last-updated">Last updated: June 26, 2025</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn close-privacy-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Password toggle functionality
+    const passwordToggles = document.querySelectorAll('.password-toggle');
+    passwordToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            togglePasswordVisibility(this);
+        });
+        
+        // Add keyboard support
+        toggle.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                togglePasswordVisibility(this);
+            }
+        });
+        
+        // Set initial attributes
+        toggle.setAttribute('title', 'Show password');
+        toggle.setAttribute('aria-label', 'Show password');
+        toggle.setAttribute('tabindex', '0');
+    });
+    
+    // Toggle password visibility function
+    function togglePasswordVisibility(toggle) {
+        // Get the password field from the wrapper
+        const passwordField = toggle.parentElement.querySelector('input');
+        const icon = toggle.querySelector('i');
+        
+        if (!passwordField) return; // Safety check
+        
+        // Store cursor position
+        const selectionStart = passwordField.selectionStart;
+        const selectionEnd = passwordField.selectionEnd;
+        
+        if (passwordField.type === 'password') {
+            // Show password
+            passwordField.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+            toggle.setAttribute('title', 'Hide password');
+            toggle.setAttribute('aria-label', 'Hide password');
+        } else {
+            // Hide password
+            passwordField.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+            toggle.setAttribute('title', 'Show password');
+            toggle.setAttribute('aria-label', 'Show password');
+        }
+        
+        // Restore cursor position and focus
+        setTimeout(() => {
+            passwordField.focus();
+            passwordField.setSelectionRange(selectionStart, selectionEnd);
+        }, 0);
+    }
+
+    // Enhanced Password Toggle Functionality
+    document.querySelectorAll('.password-input-wrapper').forEach(wrapper => {
+        const input = wrapper.querySelector('input[type="password"], input[type="text"]');
+        const toggle = wrapper.querySelector('.password-toggle');
+        const icon = toggle.querySelector('i');
+
+        // Set initial state
+        toggle.setAttribute('title', 'Show password');
+        toggle.setAttribute('aria-label', 'Show password');
+        toggle.setAttribute('tabindex', '0');
+
+        function setVisibleState(visible) {
+            if (visible) {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+                toggle.setAttribute('title', 'Hide password');
+                toggle.setAttribute('aria-label', 'Hide password');
+                wrapper.classList.add('password-visible');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+                toggle.setAttribute('title', 'Show password');
+                toggle.setAttribute('aria-label', 'Show password');
+                wrapper.classList.remove('password-visible');
+            }
+        }
+
+        // Toggle handler
+        function togglePassword() {
+            const isVisible = input.type === 'text';
+            // Preserve cursor position
+            const start = input.selectionStart;
+            const end = input.selectionEnd;
+            setVisibleState(!isVisible);
+            setTimeout(() => {
+                input.focus();
+                input.setSelectionRange(start, end);
+            }, 0);
+        }
+
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            togglePassword();
+        });
+        toggle.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                togglePassword();
+            }
+        });
+    });
+    // Form navigation
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.form-section');
+    const nextBtns = document.querySelectorAll('.next-btn');
+    const backBtns = document.querySelectorAll('.back-btn');
+
+    // Tab click navigation
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const target = this.getAttribute('data-tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            sections.forEach(s => s.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById(target + '-section').classList.add('active');
+        });
+    });
+
+    // Enhanced next button navigation with validation
+    nextBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const currentSection = this.closest('.form-section');
+            const sectionId = currentSection.id;
+            
+            // Special validation for contact section
+            if (sectionId === 'contact-section') {
+                // Validate contact section before proceeding
+                let isValid = true;
+                let firstErrorField = null;
+                
+                // Check email
+                if (!emailInput.value || !validateEmail(emailInput.value)) {
+                    showEmailError(emailInput, 'Please enter a valid email address');
+                    isValid = false;
+                    if (!firstErrorField) firstErrorField = emailInput;
+                }
+                
+                // Check country code and phone
+                if (!countryCodeSelect.value) {
+                    countryCodeSelect.classList.add('warning');
+                    isValid = false;
+                    if (!firstErrorField) firstErrorField = countryCodeSelect;
+                }
+                
+                if (!phoneInput.value || !validatePhoneNumber(phoneInput.value, countryCodeSelect.value)) {
+                    showPhoneError('Please enter a valid phone number');
+                    isValid = false;
+                    if (!firstErrorField) firstErrorField = phoneInput;
+                }
+                
+                // Check preferred contact method
+                if (!preferredContactSelect.value) {
+                    preferredContactSelect.classList.add('warning');
+                    isValid = false;
+                    if (!firstErrorField) firstErrorField = preferredContactSelect;
+                }
+                
+                if (!isValid) {
+                    // Focus on first error field
+                    if (firstErrorField) {
+                        firstErrorField.focus();
+                    }
+                    
+                    // Show notification
+                    showNotification('Please fill in all required contact information correctly', 'error');
+                    return;
+                }
+                
+                // Clear any warnings
+                clearEmailError(emailInput);
+                clearEmailError(alternativeEmailInput);
+                clearPhoneError();
+                preferredContactSelect.classList.remove('warning');
+                
+                // Mark contact tab as completed
+                document.querySelector('.tab[data-tab="contact"]').classList.add('completed');
+            }
+            
+            // Proceed to next section
+            let nextSection = currentSection.nextElementSibling;
+            while (nextSection && !nextSection.classList.contains('form-section')) {
+                nextSection = nextSection.nextElementSibling;
+            }
+            if (nextSection) {
+                sections.forEach(s => s.classList.remove('active'));
+                nextSection.classList.add('active');
+                // Activate corresponding tab
+                const tabName = nextSection.id.replace('-section', '');
+                tabs.forEach(t => t.classList.remove('active'));
+                document.querySelector('.tab[data-tab="' + tabName + '"]').classList.add('active');
+            }
+        });
+    });
+
+    // Notification function
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        const bgColor = type === 'error' ? '#ff6b6b' : type === 'success' ? '#51cf66' : '#339af0';
+        
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${bgColor};
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            animation: slideInFromRight 0.3s ease-out;
+            max-width: 300px;
+        `;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideInFromRight 0.3s ease-out reverse';
+            setTimeout(() => notification.remove(), 300);
+        }, 4000);
+    }
+
+    // Back button navigation
+    backBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const currentSection = this.closest('.form-section');
+            let prevSection = currentSection.previousElementSibling;
+            while (prevSection && !prevSection.classList.contains('form-section')) {
+                prevSection = prevSection.previousElementSibling;
+            }
+            if (prevSection) {
+                sections.forEach(s => s.classList.remove('active'));
+                prevSection.classList.add('active');
+                // Activate corresponding tab
+                const tabName = prevSection.id.replace('-section', '');
+                tabs.forEach(t => t.classList.remove('active'));
+                document.querySelector('.tab[data-tab="' + tabName + '"]').classList.add('active');
+            }
+        });
+    });
+
+    // Form submission
+    const registrationForm = document.getElementById('registrationForm');
+    registrationForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Validate all required fields
+        const requiredFields = registrationForm.querySelectorAll('[required]');
+        let allValid = true;
+        requiredFields.forEach(field => {
+            if ((field.type === 'checkbox' && !field.checked) || (field.type !== 'checkbox' && !field.value.trim())) {
+                allValid = false;
+                field.classList.add('error');
+            } else {
+                field.classList.remove('error');
+            }
+        });
+        // Password match validation
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        if (password.value !== confirmPassword.value) {
+            allValid = false;
+            password.classList.add('error');
+            confirmPassword.classList.add('error');
+            alert('Passwords do not match.');
+            return;
+        } else {
+            password.classList.remove('error');
+            confirmPassword.classList.remove('error');
+        }
+        // Email match validation (if alternative email is filled)
+        const email = document.getElementById('email');
+        const alternativeEmail = document.getElementById('alternativeEmail');
+        if (alternativeEmail.value && email.value !== alternativeEmail.value) {
+            alternativeEmail.classList.add('error');
+            alert('Alternative email must match the main email or leave it blank.');
+            allValid = false;
+            return;
+        } else {
+            alternativeEmail.classList.remove('error');
+        }
+        if (!allValid) {
+            alert('Please fill in all required fields and agree to the terms.');
+            return;
+        }
+        
+        // Show success overlay and handle redirect
+        const successOverlay = document.getElementById('successOverlay');
+        successOverlay.classList.add('show');
+
+        // After 5 seconds, redirect to payment page
+        setTimeout(() => {
+            window.location.href = 'payment.html';
+        }, 2000);
+    });
+});
+    </script>
+    <script>
+        // Enhanced personal section functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Enhanced name input auto-capitalization
+            const nameInputs = document.querySelectorAll('#firstName, #lastName');
+            nameInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    // Capitalize first letter of each word
+                    this.value = this.value.replace(/\b\w/g, letter => letter.toUpperCase());
+                });
+            });
+            
+            // Age calculator for birth year/month
+            function updateAgeDisplay() {
+                const birthYear = document.getElementById('birthYear').value;
+                const birthMonth = document.getElementById('birthMonth').value;
+                
+                if (birthYear && birthMonth) {
+                    const age = new Date().getFullYear() - parseInt(birthYear);
+                    const ageDisplay = document.querySelector('.age-display') || document.createElement('div');
+                    ageDisplay.className = 'age-display';
+                    ageDisplay.style.cssText = `
+                        margin-top: 8px; padding: 8px 12px; border-radius: 6px;
+                        font-size: 14px; font-weight: 500; text-align: center;
+                        background: linear-gradient(135deg, rgba(197, 163, 90, 0.1), rgba(197, 163, 90, 0.2));
+                        color: #c5a35a;
+                    `;
+                    ageDisplay.textContent = `You are ${age} years old`;
+                    
+                    if (age < 18) {
+                        ageDisplay.style.background = 'linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 107, 107, 0.2))';
+                        ageDisplay.style.color = '#ff6b6b';
+                        ageDisplay.textContent = `You must be 18 or older (currently ${age})`;
+                    }
+                    
+                    if (!document.querySelector('.age-display')) {
+                        document.getElementById('birthMonth').parentNode.appendChild(ageDisplay);
+                    }
+                }
+            }
+            
+            document.getElementById('birthYear')?.addEventListener('change', updateAgeDisplay);
+            document.getElementById('birthMonth')?.addEventListener('change', updateAgeDisplay);
+        });
+    </script>
+    
+    <!-- Registration Success Overlay -->
+    <div class="register-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: none; align-items: center; justify-content: center; z-index: 9999; backdrop-filter: blur(5px);">
+        <div class="loading-spinner" style="width: 60px; height: 60px; border: 4px solid rgba(255, 255, 255, 0.3); border-top: 4px solid #FFD700; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+        <div class="success-animation" style="display: none;">
+            <!-- Enhanced success animation will be injected here -->
+        </div>
+    </div>
+
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore-compat.js"></script>
+    <script src="scripts/firebase-config.js"></script>
+    <script src="scripts/register.js"></script>
+    <script>
+        // Enhanced phone formatting function
+    window.formatPhoneInput = function(input) {
+        // Remove all non-numeric characters except spaces, dashes, parentheses, dots, hash, and asterisk
+        let value = input.value.replace(/[^0-9\s\-\+\(\)\.#\*]/g, '');
+        
+        // Basic formatting for common patterns
+        if (value.length <= 3) {
+            // Do nothing for first 3 digits
+        } else if (value.length <= 6) {
+            // Format as: 123-456
+            value = value.replace(/(\d{3})(\d{1,3})/, '$1-$2');
+        } else if (value.length <= 10) {
+            // Format as: 123-456-7890
+            value = value.replace(/(\d{3})(\d{3})(\d{1,4})/, '$1-$2-$3');
+        }
+        
+        input.value = value;
+    };
+
+    // Email validation enhancement
+    const emailInput = document.getElementById('email');
+    const alternativeEmailInput = document.getElementById('alternativeEmail');
+    
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+    
+    function showEmailError(input, message) {
+        input.classList.add('warning');
+        // Remove existing error message
+        const existingError = input.parentNode.querySelector('.error-message');
+        if (existingError) existingError.remove();
+        
+        // Add new error message
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.style.color = '#ff6b6b';
+        errorDiv.style.fontSize = '14px';
+        errorDiv.style.marginTop = '5px';
+        errorDiv.textContent = message;
+        input.parentNode.appendChild(errorDiv);
+    }
+    
+    function clearEmailError(input) {
+        input.classList.remove('warning');
+        const existingError = input.parentNode.querySelector('.error-message');
+        if (existingError) existingError.remove();
+    }
+
+    // Real-time email validation
+    emailInput.addEventListener('blur', function() {
+        if (this.value && !validateEmail(this.value)) {
+            showEmailError(this, 'Please enter a valid email address');
+        } else {
+            clearEmailError(this);
+        }
+    });
+
+    emailInput.addEventListener('input', function() {
+        if (this.classList.contains('warning') && validateEmail(this.value)) {
+            clearEmailError(this);
+        }
+    });
+
+    // Alternative email validation (only if filled)
+    alternativeEmailInput.addEventListener('blur', function() {
+        if (this.value && !validateEmail(this.value)) {
+            showEmailError(this, 'Please enter a valid email address');
+        } else {
+            clearEmailError(this);
+        }
+    });
+
+    alternativeEmailInput.addEventListener('input', function() {
+        if (this.classList.contains('warning') && (this.value === '' || validateEmail(this.value))) {
+            clearEmailError(this);
+        }
+    });
+
+    // Phone number validation
+    const phoneInput = document.getElementById('phone');
+    const countryCodeSelect = document.getElementById('countryCode');
+    
+    function validatePhoneNumber(phone, countryCode) {
+        // Remove all non-numeric characters for validation
+        const cleanPhone = phone.replace(/[^0-9]/g, '');
+        
+        // Basic validation - at least 7 digits for most countries
+        if (cleanPhone.length < 7) {
+            return false;
+        }
+        
+        // Country-specific validation
+        if (countryCode === '+1') { // US/Canada
+            return cleanPhone.length === 10;
+        } else if (countryCode === '+44') { // UK
+            return cleanPhone.length >= 10 && cleanPhone.length <= 11;
+        } else if (countryCode === '+91') { // India
+            return cleanPhone.length === 10;
+        }
+        
+        // Default validation for other countries
+        return cleanPhone.length >= 7 && cleanPhone.length <= 15;
+    }
+    
+    function showPhoneError(message) {
+        phoneInput.classList.add('warning');
+        const existingError = phoneInput.parentNode.parentNode.querySelector('.error-message');
+        if (existingError) existingError.remove();
+        
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.style.color = '#ff6b6b';
+        errorDiv.style.fontSize = '14px';
+        errorDiv.style.marginTop = '5px';
+        errorDiv.textContent = message;
+        phoneInput.parentNode.parentNode.appendChild(errorDiv);
+    }
+    
+    function clearPhoneError() {
+        phoneInput.classList.remove('warning');
+        countryCodeSelect.classList.remove('warning');
+        const existingError = phoneInput.parentNode.parentNode.querySelector('.error-message');
+        if (existingError) existingError.remove();
+    }
+
+    phoneInput.addEventListener('blur', function() {
+        const countryCode = countryCodeSelect.value;
+        if (this.value && countryCode) {
+            if (!validatePhoneNumber(this.value, countryCode)) {
+                showPhoneError('Please enter a valid phone number for the selected country');
+            } else {
+                clearPhoneError();
+            }
+        } else if (this.value && !countryCode) {
+            countryCodeSelect.classList.add('warning');
+            showPhoneError('Please select a country code');
+        }
+    });
+
+    countryCodeSelect.addEventListener('change', function() {
+        if (phoneInput.value && this.value) {
+            phoneInput.dispatchEvent(new Event('blur'));
+        } else if (this.value) {
+            clearPhoneError();
+        }
+    });
+
+    // Preferred contact method visual feedback
+    const preferredContactSelect = document.getElementById('preferredContact');
+    
+    preferredContactSelect.addEventListener('change', function() {
+        const emailRow = emailInput.closest('.form-row');
+        const phoneRow = phoneInput.closest('.form-row');
+        
+        // Remove any previous highlighting
+        emailRow.style.backgroundColor = '';
+        phoneRow.style.backgroundColor = '';
+        emailRow.style.border = '';
+        phoneRow.style.border = '';
+        
+        // Add visual feedback based on selection
+        if (this.value === 'email') {
+            emailRow.style.backgroundColor = 'rgba(197, 163, 90, 0.1)';
+            emailRow.style.border = '1px solid rgba(197, 163, 90, 0.3)';
+            emailRow.style.borderRadius = '8px';
+            emailRow.style.padding = '10px';
+        } else if (this.value === 'phone') {
+            phoneRow.style.backgroundColor = 'rgba(197, 163, 90, 0.1)';
+            phoneRow.style.border = '1px solid rgba(197, 163, 90, 0.3)';
+            phoneRow.style.borderRadius = '8px';
+            phoneRow.style.padding = '10px';
+        } else if (this.value === 'both') {
+            emailRow.style.backgroundColor = 'rgba(197, 163, 90, 0.1)';
+            emailRow.style.border = '1px solid rgba(197, 163, 90, 0.3)';
+            emailRow.style.borderRadius = '8px';
+            emailRow.style.padding = '10px';
+            phoneRow.style.backgroundColor = 'rgba(197, 163, 90, 0.1)';
+            phoneRow.style.border = '1px solid rgba(197, 163, 90, 0.3)';
+            phoneRow.style.borderRadius = '8px';
+            phoneRow.style.padding = '10px';
+        }
+    });
+
+    // Add CSS animation for notifications
+    if (!document.querySelector('#contact-notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'contact-notification-styles';
+        style.textContent = `
+            @keyframes slideInFromRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            .error-message {
+                animation: fadeIn 0.3s ease-in;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    </script>
+</body>
+</html>

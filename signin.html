@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | CelebMingle</title>
+    <link rel="stylesheet" href="styles/signin.css">
+    <link rel="stylesheet" href="styles/signin-animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="index.html" class="back-home-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    <div class="signin-container">
+        <div class="signin-form-container">
+            <div class="form-header">
+                <div class="logo">
+                    <h1>CELEB<span>MINGLE</span></h1>
+                </div>
+                <h2>Sign In to Your Account</h2>
+                <p>Welcome back! Please login to continue</p>
+            </div>
+            <form id="signinForm">
+                <div id="sinupMessage" class="messageDiv" style="display: none;"></div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-container">
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-container password-input">
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+                        <button type="button" class="toggle-password-btn"><i class="fas fa-eye-slash toggle-password"></i></button>
+                    </div>
+                </div>
+                <div class="form-group checkbox-group remember-group">
+                    <input type="checkbox" id="rememberMe" name="rememberMe">
+                    <label for="rememberMe">Remember me</label>
+                </div>
+                <button type="submit" class="btn signin-btn">Sign In</button>
+                <div class="form-links">
+                    <a href="#" class="forgot-password-link">Forgot Password?</a>
+                </div>
+            </form>
+            <div class="register-link">
+                <p>Don't have an account? <a href="register.html" class="gold-link">Register Now</a></p>
+            </div>
+        </div>
+        <div class="signin-sidebar">
+            <h3>Why Join CelebMingle?</h3>
+            <ul>
+                <li><i class="fas fa-star"></i> Connect with your favorite stars</li>
+                <li><i class="fas fa-video"></i> Access exclusive content</li>
+                <li><i class="fas fa-gift"></i> Enjoy premium member benefits</li>
+                <li><i class="fas fa-users"></i> Be part of a vibrant community</li>
+            </ul>
+            <div class="testimonial">
+                <p>"The sign-in process is so smooth and secure. I love being a part of CelebMingle!"</p>
+                <div class="testimonial-author">
+                    <span>— Daniel Craig</span>
+                    <span class="member-type">Gold Member</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Loading overlay -->
+    <div class="signin-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: none; align-items: center; justify-content: center; z-index: 9999; backdrop-filter: blur(5px);">
+        <div class="loading-spinner" style="width: 60px; height: 60px; border: 4px solid rgba(255, 255, 255, 0.3); border-top: 4px solid #FFD700; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+        <div class="success-animation" style="display: none;">
+            <!-- Enhanced success animation will be injected here -->
+        </div>
+    </div>
+
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+    <!-- Error Message Display -->
+    <div id="errorDisplay" class="error-display" style="display: none;">
+        <div class="error-content">
+            <i class="fas fa-exclamation-circle"></i>
+            <p id="errorMessage"></p>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Reset Password</h2>
+            <p>Enter your email address and we'll send you a password reset link.</p>
+            <form id="forgotPasswordForm">
+                <div class="form-group">
+                    <label for="resetEmail">Email Address</label>
+                    <input type="email" id="resetEmail" name="resetEmail" required>
+                </div>
+                <button type="submit" class="btn reset-btn">Send Reset Link</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore-compat.js"></script>
+
+    <!-- App Scripts -->
+    <script src="scripts/firebase-config.js"></script>
+    <script src="scripts/signin.js"></script>
+</body>
+</html>

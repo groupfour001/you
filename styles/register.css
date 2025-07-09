@@ -1,0 +1,2574 @@
+:root {
+    --gold: #D4AF37;
+    --gold-hover: #BFA532;
+    --dark: #1A1A1A;
+    --darker: #0F0F0F;
+    --light-gold: rgba(212, 175, 55, 0.1);
+}
+
+
+
+body {
+    width: 90.90909090909091%; /* 100/1.1 to compensate for zoom */
+    height: 90.90909090909091%;
+    margin: 0;
+    padding: 0;
+    background: var(--darker);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.form-container {
+    flex: 1;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(15, 15, 15, 0.95));
+    padding: 3rem;
+    border-radius: 15px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin: 0;
+    color: #fff;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.form-header h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    margin: 1rem 0;
+}
+
+.form-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.tab {
+    background: none;
+    border: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    position: relative;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    opacity: 1;
+    color: var(--gold);
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gold);
+}
+
+.form-section {
+    display: none;
+}
+
+.form-section.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.form-group.city-group {
+    margin-right: 1.5rem;
+}
+
+.form-group::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.form-group:focus-within::after {
+    opacity: 1;
+}
+
+.form-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.3rem 1rem;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 8px;
+    background-color: rgba(15, 15, 15, 0.6);
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23D4AF37' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 1rem) center;
+    background-size: 12px;
+}
+
+.form-group {
+    flex: 1;
+    position: relative;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    height: 48px;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 8px;
+    background-color: rgba(15, 15, 15, 0.6);
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--gold);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+}
+
+/* Style for the select dropdowns */
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23D4AF37' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+/* Spacing between sections */
+.form-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(15, 15, 15, 0.3);
+    border-radius: 12px;
+}
+
+/* Phone input specific styling */
+.phone-input {
+    display: flex;
+    gap: 1rem;
+}
+
+.phone-input select {
+    width: 120px;
+    flex-shrink: 0;
+}
+
+.phone-input input {
+    flex: 1;
+}
+
+/* Fix phone input sizing and layout */
+.phone-input-container {
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+    width: 100%;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(26, 26, 26, 0.8);
+    transition: border-color 0.3s ease;
+    margin-bottom: 0.5rem;
+}
+
+.country-code-select {
+    background: rgba(15, 15, 15, 0.9);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 0.5rem;
+    font-size: 0.95rem;
+    min-width: 90px;
+    max-width: 120px;
+    height: 44px;
+    border-right: 1px solid rgba(212, 175, 55, 0.3);
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.phone-input-container input[type="tel"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1rem;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    .phone-input-container {
+        max-width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .country-code-select {
+        width: 100%;
+        max-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .phone-input-container input[type="tel"] {
+        width: 100%;
+        padding: 0.75rem 0.5rem;
+    }
+}
+
+/* Enhanced select styling */
+select {
+    /* Existing styles */
+    width: 100%;
+    padding: 1rem 1.2rem;
+    background: linear-gradient(145deg, rgba(18, 18, 18, 0.95), rgba(30, 30, 30, 0.95));
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    appearance: none;
+    
+    /* Custom arrow styling */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23D4AF37' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 1rem) center;
+    background-size: 12px;
+}
+
+/* Custom scrollbar for dropdown */
+select::-webkit-scrollbar {
+    width: 8px;
+}
+
+select::-webkit-scrollbar-track {
+    background: var(--darker);
+    border-radius: 4px;
+}
+
+select::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 4px;
+}
+
+select::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-hover);
+}
+
+/* Enhanced dropdown options */
+select option {
+    background-color: var(--dark);
+    color: #fff;
+    padding: 1rem;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+select option:hover,
+select option:focus,
+select option:active,
+select option:checked {
+    background: linear-gradient(135deg, var(--gold), var(--gold-hover)) !important;
+    color: var(--darker) !important;
+}
+
+/* Firefox specific styles */
+@-moz-document url-prefix() {
+    select {
+        border: 1px solid var(--gold);
+        background-color: var(--dark);
+        color: #fff;
+    }
+    
+    select:hover {
+        border-color: var(--gold-hover);
+    }
+}
+
+/* Enhanced focus states */
+select:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2),
+                0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+select:hover {
+    background: linear-gradient(145deg, rgba(25, 25, 25, 0.95), rgba(35, 35, 35, 0.95));
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+select:focus {
+    outline: none;
+    background: linear-gradient(145deg, rgba(28, 28, 28, 0.95), rgba(38, 38, 38, 0.95));
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2),
+                0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+select option {
+    background-color: #1A1A1A;
+    color: #fff;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+select option:hover {
+    background-color: var(--gold);
+    color: #000;
+}
+
+input:hover, select:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(212, 175, 55, 0.05);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.phone-input {
+    display: flex;
+    gap: 1rem;
+    align-items: stretch;
+    position: relative;
+}
+
+.phone-input::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: calc(35% + 0.5rem);
+    width: 1px;
+    height: 60%;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.phone-input select {
+    width: 35%;
+    padding-right: 2rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+}
+
+.phone-input input[type="tel"] {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+    padding-left: 1.5rem;
+}
+
+.phone-input input[type="tel"] {
+    flex: 1;
+}
+
+/* Phone number input with country code dropdown */
+.phone-input-container {
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+    width: 100%;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(26, 26, 26, 0.8);
+    transition: border-color 0.3s ease;
+    margin-bottom: 0.5rem;
+}
+
+.country-code-select {
+    background: rgba(15, 15, 15, 0.9);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 0.5rem;
+    font-size: 0.95rem;
+    min-width: 90px;
+    max-width: 120px;
+    height: 44px;
+    border-right: 1px solid rgba(212, 175, 55, 0.3);
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.phone-input-container input[type="tel"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1rem;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    .phone-input-container {
+        max-width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .country-code-select {
+        width: 100%;
+        max-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .phone-input-container input[type="tel"] {
+        width: 100%;
+        padding: 0.75rem 0.5rem;
+    }
+}
+
+/* Enhanced select styling */
+select {
+    /* Existing styles */
+    width: 100%;
+    padding: 1rem 1.2rem;
+    background: linear-gradient(145deg, rgba(18, 18, 18, 0.95), rgba(30, 30, 30, 0.95));
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    appearance: none;
+    
+    /* Custom arrow styling */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23D4AF37' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 1rem) center;
+    background-size: 12px;
+}
+
+/* Custom scrollbar for dropdown */
+select::-webkit-scrollbar {
+    width: 8px;
+}
+
+select::-webkit-scrollbar-track {
+    background: var(--darker);
+    border-radius: 4px;
+}
+
+select::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 4px;
+}
+
+select::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-hover);
+}
+
+/* Enhanced dropdown options */
+select option {
+    background-color: var(--dark);
+    color: #fff;
+    padding: 1rem;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+select option:hover,
+select option:focus,
+select option:active,
+select option:checked {
+    background: linear-gradient(135deg, var(--gold), var(--gold-hover)) !important;
+    color: var(--darker) !important;
+}
+
+/* Firefox specific styles */
+@-moz-document url-prefix() {
+    select {
+        border: 1px solid var(--gold);
+        background-color: var(--dark);
+        color: #fff;
+    }
+    
+    select:hover {
+        border-color: var(--gold-hover);
+    }
+}
+
+/* Enhanced focus states */
+select:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2),
+                0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+select:hover {
+    background: linear-gradient(145deg, rgba(25, 25, 25, 0.95), rgba(35, 35, 35, 0.95));
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+select:focus {
+    outline: none;
+    background: linear-gradient(145deg, rgba(28, 28, 28, 0.95), rgba(38, 38, 38, 0.95));
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2),
+                0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+select option {
+    background-color: #1A1A1A;
+    color: #fff;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+select option:hover {
+    background-color: var(--gold);
+    color: #000;
+}
+
+input:hover, select:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(212, 175, 55, 0.05);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.phone-input {
+    display: flex;
+    gap: 1rem;
+    align-items: stretch;
+    position: relative;
+}
+
+.phone-input::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: calc(35% + 0.5rem);
+    width: 1px;
+    height: 60%;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.phone-input select {
+    width: 35%;
+    padding-right: 2rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+}
+
+.phone-input input[type="tel"] {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+    padding-left: 1.5rem;
+}
+
+.phone-input input[type="tel"] {
+    flex: 1;
+}
+
+/* Phone number input with country code dropdown */
+.phone-input-container {
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+    width: 100%;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(26, 26, 26, 0.8);
+    transition: border-color 0.3s ease;
+    margin-bottom: 0.5rem;
+}
+
+.country-code-select {
+    background: rgba(15, 15, 15, 0.9);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 0.5rem;
+    font-size: 0.95rem;
+    min-width: 90px;
+    max-width: 120px;
+    height: 44px;
+    border-right: 1px solid rgba(212, 175, 55, 0.3);
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.phone-input-container input[type="tel"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1rem;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    .phone-input-container {
+        max-width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .country-code-select {
+        width: 100%;
+        max-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .phone-input-container input[type="tel"] {
+        width: 100%;
+        padding: 0.75rem 0.5rem;
+    }
+}
+
+/* Password Input Mobile Optimization */
+@media (max-width: 768px) {
+    .password-input-wrapper {
+        position: relative;
+        width: 100%;
+    }
+    
+    .password-input-wrapper input {
+        padding-right: 2.5rem;
+        height: 42px;
+        font-size: 0.9rem;
+    }
+    
+    .password-toggle {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 32px;
+        height: 32px;
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .password-input-wrapper input {
+        height: 38px;
+        font-size: 0.85rem;
+        padding-right: 2.2rem;
+    }
+    
+    .password-toggle {
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+        right: 0.4rem;
+    }
+}
+
+.form-group.date-group {
+    position: relative;
+}
+
+.form-group.date-group input[type="date"] {
+    width: 100%;
+    padding: 0.3rem 2.5rem 0.3rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: linear-gradient(145deg, rgba(18, 18, 18, 0.95), rgba(30, 30, 30, 0.95));
+    color: #fff;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.form-group.date-group input[type="date"]:hover {
+    border-color: rgba(212, 175, 55, 0.5);
+    background: linear-gradient(145deg, rgba(25, 25, 25, 0.95), rgba(35, 35, 35, 0.95));
+}
+
+.form-group.date-group input[type="date"]:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: linear-gradient(145deg, rgba(28, 28, 28, 0.95), rgba(38, 38, 38, 0.95));
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.form-group.date-group .calendar-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 1rem;
+    pointer-events: none;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.form-group.date-group:hover .calendar-icon {
+    opacity: 1;
+}
+
+/* Hide default calendar picker */
+.form-group.date-group input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Style the date text elements */
+.form-group.date-group input[type="date"]::-webkit-datetime-edit {
+    color: #fff;
+}
+
+.form-group.date-group input[type="date"]::-webkit-datetime-edit-text {
+    color: var(--gold);
+    padding: 0 0.2rem;
+}
+
+.form-group.date-group input[type="date"]::-webkit-datetime-edit-month-field,
+.form-group.date-group input[type="date"]::-webkit-datetime-edit-day-field,
+.form-group.date-group input[type="date"]::-webkit-datetime-edit-year-field {
+    color: #fff;
+}
+
+/* Firefox support */
+.form-group.date-group input[type="date"]::-moz-focus-inner {
+    border: 0;
+}
+
+/* Premium Birth Year and Month Dropdowns */
+#birthYear, #birthMonth {
+    width: 100%;
+    padding: 0.8rem 3rem 0.8rem 1.2rem;
+    border-radius: 10px;
+    border: 2px solid rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    color: #fff;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    appearance: none;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 3px rgba(255, 255, 255, 0.1);
+    
+    /* Custom dropdown arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23D4AF37' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 1.2rem) center;
+    background-size: 16px;
+}
+
+#birthYear:hover, #birthMonth:hover {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, #222, #333);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 25px rgba(212, 175, 55, 0.15),
+        inset 0 1px 3px rgba(255, 255, 255, 0.15);
+}
+
+#birthYear:focus, #birthMonth:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: linear-gradient(135deg, #252525, #353535);
+    transform: translateY(-1px);
+    box-shadow: 
+        0 12px 35px rgba(212, 175, 55, 0.25),
+        inset 0 1px 3px rgba(255, 255, 255, 0.2),
+        0 0 0 6px rgba(212, 175, 55, 0.15);
+}
+
+/* Premium dropdown options styling */
+#birthYear option, #birthMonth option {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 1rem;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+#birthYear option:hover, #birthMonth option:hover,
+#birthYear option:checked, #birthMonth option:checked {
+    background: linear-gradient(135deg, var(--gold), var(--gold-hover));
+    color: var(--darker);
+}
+
+/* Add subtle container styling for birth fields */
+.form-group:has(#birthYear), .form-group:has(#birthMonth) {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.03), rgba(212, 175, 55, 0.01));
+    border-radius: 12px;
+    padding: 0.3rem;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.08);
+}
+
+/* Labels for birth fields */
+label[for="birthYear"], label[for="birthMonth"] {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+/* Hide password field dropdown arrows and autofill suggestions */
+input[type="password"]::-webkit-textfield-decoration-container,
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-strong-password-auto-fill-button {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+input[type="password"]::-webkit-reveal {
+    display: none !important;
+}
+
+input[type="password"]::-ms-reveal {
+    display: none !important;
+}
+
+/* Additional browser-specific hiding */
+input[type="password"] {
+    -webkit-text-security: disc !important;
+}
+
+input[type="password"]::-webkit-input-placeholder {
+    -webkit-text-security: none !important;
+}
+
+.password-input {
+    position: relative;
+    background: transparent;
+}
+
+.password-input input[type="password"] {
+    width: 100%;
+    background: linear-gradient(145deg, rgba(18, 18, 18, 0.95), rgba(30, 30, 30, 0.95));
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem 1rem 1.2rem;
+    transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.password-input input[type="password"]:hover {
+    border-color: rgba(212, 175, 55, 0.4);
+    background: rgba(30, 30, 30, 0.95);
+}
+
+.password-input input[type="password"]:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    background: rgba(30, 30, 30, 0.98);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+    opacity: 0.7;
+    font-size: 1.1rem;
+}
+
+.toggle-password:hover {
+    opacity: 1;
+    color: var(--gold-hover);
+}
+
+.strength-meter {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-top: 0.5rem;
+    border-radius: 2px;
+}
+
+.strength-meter-fill {
+    height: 100%;
+    width: 0;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.strength-meter-fill[data-strength="1"] { width: 25%; background: #ff4444; }
+.strength-meter-fill[data-strength="2"] { width: 50%; background: #ffbb33; }
+.strength-meter-fill[data-strength="3"] { width: 75%; background: #00C851; }
+.strength-meter-fill[data-strength="4"] { width: 100%; background: var(--gold); }
+
+.strength-text {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.25rem;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.checkbox-group {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--gold);
+    border-radius: 4px;
+    background: #FFFFFF;
+    cursor: pointer;
+    position: relative;
+    margin: 0;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+    background: #FFFFFF;
+    border-color: var(--gold);
+}
+
+.checkbox-group input[type="checkbox"]:checked::before {
+    content: '✓';
+    position: absolute;
+    color: var(--gold);
+    font-size: 16px;
+    font-weight: bold;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-group input[type="checkbox"]:hover {
+    border-color: var(--gold-hover);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.1);
+}
+
+.checkbox-group input[type="checkbox"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.checkbox-group label {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0;
+    padding-top: 2px;
+}
+
+/* Regular input field styling (remove dropdown-like appearance) */
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    background: linear-gradient(145deg, rgba(18, 18, 18, 0.95), rgba(30, 30, 30, 0.95));
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 0.3rem 1.2rem;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="tel"]:hover {
+    border-color: rgba(212, 175, 55, 0.4);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+/* Error state for checkboxes */
+.checkbox-group input[type="checkbox"].error {
+    border-color: #ff4444;
+    background: rgba(255, 68, 68, 0.05);
+}
+
+.checkbox-group .error-message {
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+    font-size: 0.8rem;
+    color: #ff4444;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.next-btn, .submit-btn {
+    background: var(--gold);
+    color: var(--darker);
+}
+
+.next-btn:hover, .submit-btn:hover {
+    background: var(--gold-hover);
+}
+
+.back-btn {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.back-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.login-links {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gold-link {
+    color: var(--gold);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.gold-link:hover {
+    color: var(--gold-hover);
+}
+
+.sidebar {
+    width: 350px;
+    background: var(--dark);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-content h3 {
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-content li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sidebar-content li i {
+    color: var(--gold);
+}
+
+.testimonial {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.testimonial p {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.testimonial-author {
+    margin-top: 1rem;
+    color: var(--gold);
+}
+
+.member-type {
+    display: block;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.98), rgba(15, 15, 15, 0.98));
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 0 0 1px rgba(212, 175, 55, 0.1);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    transform: scale(0.9);
+    transition: all 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.03), transparent);
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+.modal-content h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.modal-content p {
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.close-modal {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.close-modal:hover {
+    color: var(--gold);
+    background: rgba(212, 175, 55, 0.1);
+    transform: rotate(90deg);
+}
+
+.optional {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+}
+
+/* Form validation styles */
+.error {
+    border-color: #ff4444 !important;
+    background-color: rgba(255, 68, 68, 0.05) !important;
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+/* Success modal styles */
+.success-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.success-content {
+    background: var(--dark);
+    padding: 3rem;
+    border-radius: 15px;
+    border: 1px solid var(--gold);
+    text-align: center;
+    max-width: 90%;
+    width: 400px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.success-content i {
+    font-size: 4rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+}
+
+.success-content h3 {
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1rem;
+}
+
+.success-content p {
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+/* Loading spinner */
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 1rem;
+        gap: 1rem;
+        max-width: 100%;
+    }
+    
+    .form-container {
+        padding: 1.5rem;
+        margin: 0;
+        border-radius: 10px;
+    }
+    
+    .logo h1 {
+        font-size: 2rem;
+    }
+    
+    .form-header h2 {
+        font-size: 1.5rem;
+        margin: 0.5rem 0;
+    }
+    
+    .form-header p {
+        font-size: 0.9rem;
+        margin: 0.5rem 0 1.5rem 0;
+    }
+    
+    /* Reduce tab sizes */
+    .form-tabs {
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        white-space: nowrap;
+    }
+    
+    .tab {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+        min-width: fit-content;
+        flex-shrink: 0;
+    }
+    
+    /* Reduce form field sizes */
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+    
+    .form-group input,
+    .form-group select {
+        height: 42px;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .form-group label {
+        font-size: 0.85rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .form-row {
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Stack form rows on mobile */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row.three-columns {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row.birthday-group {
+        display: flex;
+        flex-direction: row;
+        gap: 0.8rem;
+    }
+    
+    .form-row.birthday-group .form-group {
+        flex: 1;
+        margin-bottom: 1.2rem;
+    }
+    
+    /* Smaller buttons */
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .pay-btn {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+    
+    /* Phone input mobile optimization */
+    .phone-input-container {
+        flex-direction: column;
+        max-width: 100%;
+    }
+    
+    .country-code-select {
+        width: 100%;
+        max-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        min-width: auto;
+        height: 42px;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .phone-input-container input[type="tel"] {
+        width: 100%;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+        height: 42px;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+    .container {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+    
+    .form-container {
+        padding: 1rem;
+        border-radius: 8px;
+    }
+    
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+    
+    .form-header {
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    .form-header p {
+        font-size: 0.85rem;
+    }
+    
+    /* Even smaller tabs for phones */
+    .form-tabs {
+        gap: 0.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .tab {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.8rem;
+        border-radius: 6px;
+    }
+    
+    /* Compact form fields */
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    .form-group input,
+    .form-group select {
+        height: 38px;
+        padding: 0.5rem 0.7rem;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+    
+    .form-group label {
+        font-size: 0.8rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .form-row {
+        margin-bottom: 0.8rem;
+    }
+    
+    .form-row.birthday-group {
+        gap: 0.6rem;
+    }
+    
+    /* Smaller buttons for phones */
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+    
+    .pay-btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.95rem;
+        border-radius: 20px;
+    }
+    
+    .form-buttons {
+        gap: 0.8rem;
+        margin-top: 1.2rem;
+    }
+    
+    /* Compact phone input */
+    .country-code-select {
+        height: 38px;
+        padding: 0.5rem 0.7rem;
+        font-size: 0.85rem;
+    }
+    
+    .phone-input-container input[type="tel"] {
+        height: 38px;
+        padding: 0.5rem 0.7rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Smaller sidebar on phones */
+    .sidebar {
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .sidebar-content h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .sidebar-content ul li {
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .testimonial p {
+        font-size: 0.8rem;
+    }
+    
+    .testimonial-author {
+        font-size: 0.75rem;
+    }
+    
+    /* Compact modals for phones */
+    .modal-content {
+        width: 95%;
+        margin: 0.5rem;
+        padding: 1rem;
+        border-radius: 8px;
+    }
+    
+    .modal-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    /* Smaller checkboxes and labels */
+    .checkbox-group {
+        margin-bottom: 1rem;
+    }
+    
+    .checkbox-group label {
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+    
+    .checkbox-group input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        margin-right: 0.5rem;
+    }
+    
+    /* Back to home button adjustment */
+    .back-home-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+        margin: 0.5rem;
+    }
+    
+    /* Login links */
+    .login-links {
+        font-size: 0.9rem;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 320px) {
+    .container {
+        padding: 0.3rem;
+        gap: 0.3rem;
+    }
+    
+    .form-container {
+        padding: 0.8rem;
+        border-radius: 6px;
+    }
+    
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+    
+    .form-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .form-header p {
+        font-size: 0.75rem;
+    }
+    
+    .form-tabs {
+        gap: 0.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .tab {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .form-group {
+        margin-bottom: 0.8rem;
+    }
+    
+    .form-group input,
+    .form-group select {
+        height: 34px;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .form-group label {
+        font-size: 0.7rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .form-row {
+        margin-bottom: 0.6rem;
+    }
+    
+    .form-row.birthday-group {
+        gap: 0.4rem;
+    }
+    
+    .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+    
+    .pay-btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Password input mobile styles */
+    .password-input-wrapper {
+        width: 100%;
+    }
+    
+    .password-input-wrapper input {
+        padding-right: 2rem;
+        height: 38px;
+        font-size: 0.85rem;
+    }
+    
+    .password-toggle {
+        right: 0.4rem;
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+    }
+}
+
+/* General mobile styles for forms */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1.5rem 1rem;
+    }
+    
+    .form-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .form-header p {
+        font-size: 0.9rem;
+    }
+    
+    .form-tabs {
+        margin-bottom: 1.5rem;
+    }
+    
+    .tab {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+    
+    .form-group input,
+    .form-group select {
+        height: 42px;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .form-group label {
+        font-size: 0.85rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .form-row {
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Stack form rows on mobile */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row.three-columns {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row.birthday-group {
+        display: flex;
+        flex-direction: row;
+        gap: 0.8rem;
+    }
+    
+    .form-row.birthday-group .form-group {
+        flex: 1;
+        margin-bottom: 1.2rem;
+    }
+    
+    /* Smaller buttons */
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .pay-btn {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+    
+    /* Phone input mobile optimization */
+    .phone-input-container {
+        flex-direction: column;
+        max-width: 100%;
+    }
+    
+    .country-code-select {
+        width: 100%;
+        max-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        min-width: auto;
+        height: 42px;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .phone-input-container input[type="tel"] {
+        width: 100%;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+        height: 42px;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 320px) {
+    .container {
+        padding: 0.3rem;
+        gap: 0.3rem;
+    }
+    
+    .form-container {
+        padding: 0.8rem;
+        border-radius: 6px;
+    }
+    
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+    
+    .form-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .form-header p {
+        font-size: 0.75rem;
+    }
+    
+    .form-tabs {
+        gap: 0.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .tab {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .form-group {
+        margin-bottom: 0.8rem;
+    }
+    
+    .form-group input,
+    .form-group select {
+        height: 34px;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .form-group label {
+        font-size: 0.7rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .form-row {
+        margin-bottom: 0.6rem;
+    }
+    
+    .form-row.birthday-group {
+        gap: 0.4rem;
+    }
+    
+    /* Smaller buttons for phones */
+    .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+    
+    .pay-btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Password input mobile styles */
+    .password-input-wrapper {
+        width: 100%;
+    }
+    
+    .password-input-wrapper input {
+        padding-right: 2rem;
+        height: 38px;
+        font-size: 0.85rem;
+    }
+    
+    .password-toggle {
+        right: 0.4rem;
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+    }
+}
+
+/* General mobile styles for forms */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1.5rem 1rem;
+    }
+    
+    .form-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .form-header p {
+        font-size: 0.9rem;
+    }
+    
+    .form-tabs {
+        margin-bottom: 1.5rem;
+    }
+    
+    .tab {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+    
+    .form-group input,
+    .form-group select {
+        height: 42px;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .form-group label {
+        font-size: 0.85rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .form-row {
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Stack form rows on mobile */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row.three-columns {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row.birthday-group {
+        display: flex;
+        flex-direction: row;
+        gap: 0.8rem;
+    }
+    
+    .form-row.birthday-group .form-group {
+        flex: 1;
+        margin-bottom: 1.2rem;
+    }
+    
+    /* Smaller buttons */
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .pay-btn {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+    
+    /* Phone input mobile optimization */
+    .phone-input-container {
+        flex-direction: column;
+        max-width: 100%;
+    }
+    
+    .country-code-select {
+        width: 100%;
+        max-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        min-width: auto;
+        height: 42px;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .phone-input-container input[type="tel"] {
+        width: 100%;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+        height: 42px;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 320px) {
+    .container {
+        padding: 0.3rem;
+        gap: 0.3rem;
+    }
+    
+    .form-container {
+        padding: 0.8rem;
+        border-radius: 6px;
+    }
+    
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+    
+    .form-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .form-header p {
+        font-size: 0.75rem;
+    }
+    
+    .form-tabs {
+        gap: 0.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .tab {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .form-group {
+        margin-bottom: 0.8rem;
+    }
+    
+    .form-group input,
+    .form-group select {
+        height: 34px;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .form-group label {
+        font-size: 0.7rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .form-row {
+        margin-bottom: 0.6rem;
+    }
+    
+    .form-row.birthday-group {
+        gap: 0.4rem;
+    }
+    
+    /* Smaller buttons for phones */
+    .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+    
+    .pay-btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Password input mobile styles */
+    .password-input-wrapper {
+        width: 100%;
+    }
+    
+    .password-input-wrapper input {
+        padding-right: 2rem;
+        height: 38px;
+        font-size: 0.85rem;
+    }
+    
+    .password-toggle {
+        right: 0.4rem;
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+    }
+}
+
+/* General mobile styles for forms */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1.5rem 1rem;
+    }
+    
+    .form-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .form-header p {
+        font-size: 0.9rem;
+    }
+    
+    .form-tabs {
+        margin-bottom: 1.5rem;
+    }
+    
+    .tab {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+    
+    .form-group input,
+    .form-group select {
+        height: 42px;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .form-group label {
+        font-size: 0.85rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .form-row {
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Stack form rows on mobile */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row.three-columns {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row.birthday-group {
+        display: flex;
+        flex-direction: row;
+        gap: 0.8rem;
+    }
+    
+    .form-row.birthday-group .form-group {
+        flex: 1;
+        margin-bottom: 1.2rem;
+    }
+    
+    /* Smaller buttons */
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .pay-btn {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+    
+    /* Phone input mobile optimization */
+    .phone-input-container {
+        flex-direction: column;
+        max-width: 100%;
+    }
+    
+    .country-code-select {
+        width: 100%;
+        max-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        min-width: auto;
+        height: 42px;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .phone-input-container input[type="tel"] {
+        width: 100%;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+        height: 42px;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 320px) {
+    .container {
+        padding: 0.3rem;
+        gap: 0.3rem;
+    }
+    
+    .form-container {
+        padding: 0.8rem;
+        border-radius: 6px;
+    }
+    
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+    
+    .form-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .form-header p {
+        font-size: 0.75rem;
+    }
+    
+    .form-tabs {
+        gap: 0.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .tab {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .form-group {
+        margin-bottom: 0.8rem;
+    }
+    
+    .form-group input,
+    .form-group select {
+        height: 34px;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .form-group label {
+        font-size: 0.7rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .form-row {
+        margin-bottom: 0.6rem;
+    }
+    
+    .form-row.birthday-group {
+        gap: 0.4rem;
+    }
+    
+    /* Smaller buttons for phones */
+    .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+    
+    .pay-btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Password input mobile styles */
+    .password-input-wrapper {
+        width: 100%;
+    }
+    
+    .password-input-wrapper input {
+        padding-right: 2rem;
+        height: 38px;
+        font-size: 0.85rem;
+    }
+    
+    .password-toggle {
+        right: 0.4rem;
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+    }
+}
+
+/* General mobile styles for forms */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1.5rem 1rem;
+    }
+    
+    .form-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .form-header p {
+        font-size: 0.9rem;
+    }
+    
+    .form-tabs {
+        margin-bottom: 1.5rem;
+    }
+    
+    .tab {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+    
+    .form-group input,
+    .form-group select {
+        height: 42px;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .form-group label {
+        font-size: 0.85rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .form-row {
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+       
+    /* Stack form rows on mobile */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row.three-columns {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row.birthday-group {
+        display: flex;
+        flex-direction: row;
+        gap: 0.8rem;
+    }
+    
+    .form-row.birthday-group .form-group {
+        flex: 1;
+        margin-bottom: 1.2rem;
+    }
+    
+    /* Smaller buttons */
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .pay-btn {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+    
+    /* Phone input mobile optimization */
+    .phone-input-container {
+        flex-direction: column;
+        max-width: 100%;
+    }
+    
+    .country-code-select {
+        width: 100%;
+        max-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        min-width: auto;
+        height: 42px;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .phone-input-container input[type="tel"] {
+        width: 100%;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+        height: 42px;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 320px) {
+    .container {
+        padding: 0.3rem;
+        gap: 0.3rem;
+    }
+    
+    .form-container {
+        padding: 0.8rem;
+        border-radius: 6px;
+    }
+    
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+    
+    .form-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .form-header p {
+        font-size: 0.75rem;
+    }
+    
+    .form-tabs {
+        gap: 0.2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .tab {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .form-group {
+        margin-bottom: 0.8rem;
+    }
+    
+    .form-group input,
+    .form-group select {
+        height: 34px;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .form-group label {
+        font-size: 0.7rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .form-row {
+        margin-bottom: 0.6rem;
+    }
+    
+    .form-row.birthday-group {
+        gap: 0.4rem;
+    }
+    
+    /* Smaller buttons for phones */
+    .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+    
+    .pay-btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Password input mobile styles */
+    .password-input-wrapper {
+        width: 100%;
+    }
+    
+    .password-input-wrapper input {
+        padding-right: 2rem;
+        height: 38px;
+        font-size: 0.85rem;
+    }
+    
+    .password-toggle {
+        right: 0.4rem;
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+    }
+}

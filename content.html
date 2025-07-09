@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CelebMingle - Exclusive Content Access</title>
+    <link rel="stylesheet" href="styles/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="content-container">
+            <!-- Header Section -->
+            <div class="content-header">
+                <div class="logo-section">
+                    <img src="images/minglelogo.jpg" alt="CelebMingle" class="brand-logo">
+                    <div class="security-badge">
+                        <i class="fas fa-shield-check"></i>
+                        <span>Premium Content Portal</span>
+                    </div>
+                </div>
+                <h1 class="page-title">Exclusive Content Access</h1>
+                <p class="subtitle">Behind-the-Scenes • Photos • Videos • Voice Notes</p>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="progress-steps">
+                <div class="step completed">
+                    <div class="step-number">1</div>
+                    <span>Content Selection</span>
+                </div>
+                <div class="step active">
+                    <div class="step-number">2</div>
+                    <span>Access Level</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <span>Payment</span>
+                </div>
+            </div>
+
+            <!-- Content Access Packages -->
+            <div class="package-selection">
+                <h2 class="section-title">
+                    <i class="fas fa-play-circle"></i>
+                    Choose Your Content Access
+                </h2>
+                
+                <div class="package-cards">
+                    <!-- Premium Access Card -->
+                    <div class="package-card premium-access" data-package="premium">
+                        <input type="radio" name="package" value="premium" id="premium-package" checked>
+                        <label for="premium-package" class="package-label">
+                            <div class="package-header">
+                                <h3>Premium Content Access</h3>
+                                <div class="package-price">
+                                    <span class="currency">$</span>
+                                    <span class="amount">599.99</span>
+                                    <span class="period">USD</span>
+                                </div>
+                            </div>
+                            <div class="package-features" id="premium-features">
+                                <!-- Features will be populated by JavaScript -->
+                            </div>
+                            <div class="selection-indicator">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Ultimate Access Card -->
+                    <div class="package-card ultimate-access" data-package="ultimate">
+                        <input type="radio" name="package" value="ultimate" id="ultimate-package">
+                        <label for="ultimate-package" class="package-label">
+                            <div class="package-header">
+                                <h3>Ultimate Content Collection</h3>
+                                <div class="package-price">
+                                    <span class="currency">$</span>
+                                    <span class="amount">2999.99</span>
+                                    <span class="period">USD</span>
+                                </div>
+                            </div>
+                            <div class="package-features" id="ultimate-features">
+                                <!-- Features will be populated by JavaScript -->
+                            </div>
+                            <div class="selection-indicator">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Selected Package Summary -->
+                <div class="selected-summary">
+                    <div class="summary-content">
+                        <span>Selected: </span>
+                        <span id="selectedPackageName">Premium Content Access</span>
+                        <span class="summary-price">$<span id="selectedPackagePrice">599.99</span></span>
+                    </div>
+                </div>
+                
+                <!-- Timer Section -->
+                <div class="package-timer">
+                    <i class="fas fa-clock"></i>
+                    <span>Special offer expires in:</span>
+                    <div class="countdown" id="contentCountdown">14:59</div>
+                </div>
+            </div>
+
+            <!-- Content Preview Section -->
+            <div class="content-preview">
+                <h3 class="preview-title">What You'll Get Access To</h3>
+                <div class="preview-grid">
+                    <div class="preview-item">
+                        <div class="preview-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h4>Exclusive Videos</h4>
+                        <p>Behind-the-scenes footage, personal moments, and unreleased content</p>
+                        <div class="content-count">50+ Videos</div>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h4>Personal Photos</h4>
+                        <p>Candid shots, photoshoot outtakes, and personal collection images</p>
+                        <div class="content-count">200+ Photos</div>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-icon">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <h4>Voice Messages</h4>
+                        <p>Personal voice notes, audio diaries, and exclusive messages</p>
+                        <div class="content-count">25+ Audio Files</div>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h4>Written Content</h4>
+                        <p>Personal stories, thoughts, and exclusive written material</p>
+                        <div class="content-count">30+ Articles</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Value Comparison Section -->
+            <div class="value-comparison">
+                <h3 class="comparison-title">Package Comparison</h3>
+                <div class="comparison-grid">
+                    <div class="premium-summary">
+                        <h4 class="summary-title">Premium Access ($599.99)</h4>
+                        <div class="summary-features">
+                            ✅ 30-day access to exclusive content<br>
+                            ✅ HD video and photo downloads<br>
+                            ✅ Voice message collection<br>
+                            ✅ Mobile app access<br>
+                            ✅ Community forum access
+                        </div>
+                    </div>
+                    <div class="ultimate-summary">
+                        <h4 class="summary-title">Ultimate Collection ($2999.99)</h4>
+                        <div class="summary-features">
+                            🌟 LIFETIME access to ALL content<br>
+                            🎬 4K Ultra HD downloads<br>
+                            🎧 Exclusive audio commentary tracks<br>
+                            📱 Priority mobile & desktop access<br>
+                            💬 Direct messaging privileges<br>
+                            🎁 Monthly bonus content drops<br>
+                            🏆 VIP community status<br>
+                            📦 Physical memorabilia package
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Methods Section -->
+            <div class="payment-methods-section">
+                <h2 class="section-title">
+                    <i class="fas fa-credit-card"></i>
+                    Choose Payment Method
+                </h2>
+                
+                <div class="payment-options">
+                    <!-- Crypto Option -->
+                    <div class="payment-option" data-method="crypto">
+                        <input type="radio" name="payment" value="crypto" id="crypto" checked>
+                        <label for="crypto" class="payment-card">
+                            <div class="payment-icon">
+                                <i class="fab fa-bitcoin"></i>
+                            </div>
+                            <div class="payment-info">
+                                <h3>Cryptocurrency</h3>
+                                <span class="payment-desc">Bitcoin, Ethereum, USDT</span>
+                                <div class="crypto-icons">
+                                    <i class="fab fa-bitcoin"></i>
+                                    <i class="fab fa-ethereum"></i>
+                                    <span class="usdt-icon">₮</span>
+                                </div>
+                            </div>
+                            <div class="selection-indicator">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Features -->
+            <div class="security-features">
+                <div class="security-item">
+                    <i class="fas fa-lock"></i>
+                    <span>256-bit SSL Encryption</span>
+                </div>
+                <div class="security-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Secure Payment Processing</span>
+                </div>
+                <div class="security-item">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Privacy Protected</span>
+                </div>
+                <div class="security-item">
+                    <i class="fas fa-undo"></i>
+                    <span>30-Day Money Back Guarantee</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn-secondary" onclick="window.location.href='index.html'">
+                    <i class="fas fa-home"></i>
+                    Back to Home
+                </button>
+                <button class="btn btn-secondary" onclick="history.back()">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Selection
+                </button>
+                <button class="btn btn-primary" id="proceedToPayment">
+                    <i class="fas fa-lock"></i>
+                    Proceed to Secure Payment
+                    <span class="btn-amount">$<span id="buttonAmount">599.99</span></span>
+                </button>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="trust-indicators">
+                <div class="trust-item">
+                    <i class="fas fa-users"></i>
+                    <span>10,000+ satisfied customers</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-star"></i>
+                    <span>4.9/5 average rating</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Instant access after payment</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Processing Your Request...</h3>
+            <p>Please wait while we prepare your exclusive content access</p>
+        </div>
+    </div>
+
+    <script src="scripts/content.js"></script>
+</body>
+</html>

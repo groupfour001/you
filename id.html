@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Verification - Celebrity Mingle</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap">
+    <link rel="stylesheet" href="styles/id.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html">
+                <img src="images/minglelogo.jpg" alt="Mingle" class="brand-logo">
+            </a>
+        </div>
+        <div class="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#" class="back-link">Back</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="id-verification-container">
+        <a href="celeb.html" class="back-to-celeb-hub-btn" style="
+            display: inline-block;
+            margin: 24px auto 0 auto;
+            padding: 12px 32px;
+            background: linear-gradient(90deg, #FFD700 0%, #FFA500 100%);
+            color: #222;
+            font-weight: bold;
+            border-radius: 30px;
+            box-shadow: 0 4px 16px rgba(255, 215, 0, 0.15);
+            text-decoration: none;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            text-align: center;
+        " onmouseover="this.style.background='linear-gradient(90deg,#FFA500 0%,#FFD700 100%)';this.style.color='#fff';this.style.boxShadow='0 6px 24px rgba(255,168,0,0.18)';" onmouseout="this.style.background='linear-gradient(90deg,#FFD700 0%,#FFA500 100%)';this.style.color='#222';this.style.boxShadow='0 4px 16px rgba(255,215,0,0.15)';">
+            <i class="fas fa-arrow-left"></i> Back to Celeb Hub
+        </a>
+        <div class="verification-header">
+            <div class="header-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h1>Identity Verification</h1>
+            <p>Please upload your government-issued ID to verify your identity and enhance platform security.</p>
+        </div>
+
+        <!-- Country Selection -->
+        <div class="location-section">
+            <div class="location-card">
+                <div class="location-header">
+                    <i class="fas fa-globe"></i>
+                    <h3>Select Your Country</h3>
+                </div>
+                <div class="location-content">
+                    <div class="country-selection">
+                        <label for="countrySelect">Please select your country to see specific document requirements:</label>
+                        <select id="countrySelect" class="country-dropdown">
+                            <option value="">Select your country...</option>
+                        </select>
+                        <div class="selection-note">
+                            <i class="fas fa-info-circle"></i>
+                            Different countries have different acceptable forms of identification
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ID Upload Section -->
+        <div class="upload-section">
+            <div class="upload-card">
+                <div class="upload-header">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Upload Your ID</h3>
+                </div>
+                
+                <!-- ID Type Selection -->
+                <div class="id-type-selection">
+                    <label>Select ID Type:</label>
+                    <div class="id-type-options" id="idTypeOptions">
+                        <div class="id-option" data-type="ssn" tabindex="0" style="cursor:pointer; width: 180px; display: inline-block; text-align: center;">
+                            <i class="fas fa-id-card"></i>
+                            <span>SSN</span>
+                        </div>
+                        <div class="id-option" data-type="greencard" tabindex="0" style="cursor:pointer; width: 180px; display: inline-block; text-align: center; margin-left: 16px;">
+                            <i class="fas fa-address-card" style="color:#27ae60;"></i>
+                            <span>Green Card</span>
+                        </div>
+                        <div class="id-option" data-type="eadcard" tabindex="0" style="cursor:pointer; width: 180px; display: inline-block; text-align: center; margin-left: 16px;">
+                            <i class="fas fa-id-badge" style="color:#2980b9;"></i>
+                            <span>EAD Card</span>
+                        </div>
+                       
+                       
+                        <div class="id-option" data-type="driverslicense" tabindex="0" style="cursor:pointer; width: 180px; display: inline-block; text-align: center; margin-left: 16px;">
+                            <i class="fas fa-car" style="color:#16a085;"></i>
+                            <span>Driver's License</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Country-specific Requirements -->
+                <div class="requirements-section" id="requirementsSection" style="display: none;">
+                    <h4>Requirements for <span id="requirementsCountry">your country</span>:</h4>
+                    <div class="requirements-list" id="requirementsList">
+                        <!-- Dynamic requirements will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- File Upload Area -->
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-zone" id="uploadZone">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h4>Drag & Drop your ID documents here</h4>
+                        <p>or <span class="browse-link">browse files</span></p>
+                        <input type="file" id="fileInput" accept="image/*,.pdf" multiple style="display: none;">
+                        <div class="upload-note">
+                            <div><strong>Supported formats:</strong> JPG, PNG, PDF (Max 10MB per file)</div>
+                            <div><i class="fas fa-info-circle"></i> You can select and upload multiple files at once</div>
+                            <div><i class="fas fa-file-image"></i> For cards: Upload both front and back sides</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Progress -->
+                <div class="upload-progress" id="uploadProgress" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">Uploading... 0%</div>
+                </div>
+
+                <!-- Uploaded Files Preview -->
+                <div class="uploaded-files" id="uploadedFiles" style="display: none;">
+                    <h4>Uploaded Files:</h4>
+                    <div class="files-list" id="filesList">
+                        <!-- Uploaded files will be displayed here -->
+                    </div>
+                </div>
+
+                <!-- Security Notice -->
+                <div class="security-notice">
+                    <div class="notice-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="notice-content">
+                        <h5>Your Privacy is Protected</h5>
+                        <p>All uploaded documents are encrypted and stored securely. We comply with international data protection regulations and will only use your information for verification purposes.</p>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="submit-section">
+                    <button class="btn-submit" id="submitBtn" disabled>
+                        <i class="fas fa-check-circle"></i>
+                        Submit for Verification
+                    </button>
+                    <p class="submit-note">Verification typically takes 1-3 business days</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Verification Status Modal -->
+        <div class="modal-overlay" id="modalOverlay" style="display: none;">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Verification Submitted</h3>
+                    <button class="modal-close" id="modalClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-content">
+                    <div class="modal-icon success">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <p id="modalMessage">Your documents have been successfully submitted for verification. You will receive an email notification once the verification is complete.</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-primary" id="modalOkBtn">Continue</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Processing your request...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="scripts/email.js"></script>
+    <script src="scripts/id.js"></script>
+</body>
+</html>

@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Checkout - Celebrity Fan Club</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap">
+    <link rel="stylesheet" href="styles/generalpay.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Chart.js for price graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+    <style>
+        /* Compact Crypto Options Styling */
+        .compact-crypto {
+            display: flex !important;
+            align-items: center;
+            padding: 12px 16px !important;
+            height: 60px !important;
+            margin-bottom: 8px !important;
+            border-radius: 12px !important;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .compact-crypto:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)) !important;
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .compact-crypto.active {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05)) !important;
+            border-color: rgba(255, 215, 0, 0.5) !important;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3), 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .crypto-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 120px;
+        }
+
+        .crypto-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+            font-size: 16px;
+            color: #FFD700;
+        }
+
+        .crypto-info h4 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .crypto-symbol {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        .crypto-center {
+            flex: 1;
+            text-align: center;
+            padding: 0 16px;
+        }
+
+        .crypto-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 2px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .crypto-change {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            min-width: 60px;
+        }
+
+        .crypto-change.positive {
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .crypto-change.negative {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .crypto-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 100px;
+            justify-content: flex-end;
+        }
+
+        .mini-chart-wrapper {
+            width: 80px;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            padding: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mini-chart {
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        .crypto-status {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            min-width: 40px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.live {
+            background: #10b981;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+        }
+
+        .status-dot.stable {
+            background: #f59e0b;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 1s ease-in-out;
+        }
+
+        .price-updating {
+            animation: priceUpdate 0.3s ease-in-out;
+        }
+
+        @keyframes priceUpdate {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .compact-crypto.selecting {
+            animation: cryptoSelect 0.2s ease-out;
+        }
+
+        @keyframes cryptoSelect {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .premium-crypto-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        /* Enhanced selectable crypto options */
+        .crypto-option.selectable {
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crypto-option.selectable::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .crypto-option.selectable:hover::before {
+            left: 100%;
+        }
+
+        .crypto-option.selectable:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 
+                0 0 30px rgba(255, 215, 0, 0.3),
+                0 12px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .crypto-option.selectable:hover .crypto-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .crypto-option.selectable:hover .crypto-info h4 {
+            color: #FFD700;
+        }
+
+        .crypto-option.selectable:hover .status-dot {
+            animation: pulse 0.8s infinite;
+            transform: scale(1.2);
+        }
+
+        /* Selection state */
+        .crypto-option.selected {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.08)) !important;
+            border-color: rgba(255, 215, 0, 0.8) !important;
+            box-shadow: 
+                0 0 35px rgba(255, 215, 0, 0.4),
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .crypto-option.selected .crypto-icon {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.2));
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .crypto-option.selected .crypto-info h4 {
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Click animation */
+        .crypto-option.selectable:active {
+            transform: translateY(-2px) scale(0.98);
+            transition: transform 0.1s ease;
+        }
+
+        /* Focus accessibility */
+        .crypto-option.selectable:focus {
+            outline: 2px solid rgba(255, 215, 0, 0.5);
+            outline-offset: 2px;
+        }
+
+        /* Ripple effect on click */
+        .crypto-option.selectable {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crypto-option.selectable::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            pointer-events: none;
+        }
+
+        .crypto-option.selectable.ripple::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Selection prompt styling */
+        .selection-prompt {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin: 10px 0 20px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Pulsing border for unselected state */
+        .crypto-options:not(.has-selection) .crypto-option.selectable {
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            animation: subtleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes subtleGlow {
+            0%, 100% {
+                border-color: rgba(255, 215, 0, 0.3);
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
+            }
+            50% {
+                border-color: rgba(255, 215, 0, 0.5);
+                box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            }
+        }
+
+        /* Stop the glow animation when something is selected */
+        .crypto-options.has-selection .crypto-option.selectable:not(.selected) {
+            border-color: rgba(255, 255, 255, 0.1);
+            animation: none;
+        }
+
+        /* Professional Payment Instructions */
+        .payment-instructions {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .payment-instructions h4 {
+            color: #FFD700;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-instructions h4 i {
+            font-size: 20px;
+        }
+
+        .instruction-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .instruction-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instruction-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #FFD700, #DAA520);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .instruction-step:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .instruction-step:hover::before {
+            opacity: 1;
+        }
+
+        .step-circle {
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700, #DAA520);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            position: relative;
+        }
+
+        .step-circle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700, #DAA520);
+            opacity: 0.3;
+            animation: stepGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes stepGlow {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.1;
+            }
+        }
+
+        .step-num {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            z-index: 1;
+            position: relative;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h5 {
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            line-height: 1.3;
+        }
+
+        .step-content p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .instruction-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+
+        .instruction-note i {
+            color: #FFD700;
+            font-size: 16px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .compact-crypto {
+                padding: 10px 12px !important;
+                height: 55px !important;
+            }
+            
+            .crypto-left {
+                min-width: 100px;
+                gap: 8px;
+            }
+            
+            .crypto-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
+            
+            .crypto-info h4 {
+                font-size: 13px;
+            }
+            
+            .crypto-price {
+                font-size: 14px;
+            }
+            
+            .crypto-change {
+                font-size: 11px;
+                min-width: 50px;
+            }
+            
+            .crypto-right {
+                min-width: 80px;
+                gap: 8px;
+            }
+            
+            .mini-chart-wrapper {
+                width: 60px;
+                height: 25px;
+            }
+
+            .payment-instructions {
+                padding: 20px;
+                margin: 20px 0;
+            }
+
+            .instruction-step {
+                padding: 14px;
+                gap: 14px;
+            }
+
+            .step-circle {
+                min-width: 36px;
+                height: 36px;
+            }
+
+            .step-num {
+                font-size: 14px;
+            }
+
+            .step-content h5 {
+                font-size: 15px;
+            }
+
+            .step-content p {
+                font-size: 13px;
+            }
+
+            .instruction-note {
+                padding: 14px;
+                gap: 10px;
+                font-size: 12px;
+            }
+        }
+
+        /* Premium Back to Celeb Hub Button */
+    .btn-back.premium-btn {
+        font-size: 1.1rem;
+        padding: 14px 36px;
+        border-radius: 30px;
+        background: linear-gradient(90deg,#1e3a8a 0%,#2563eb 100%);
+        color: #fff;
+        font-weight: 700;
+        box-shadow: 0 4px 24px rgba(30,58,138,0.18);
+        border: none;
+        transition: background 0.3s;
+    }
+
+    .btn-back.premium-btn:hover {
+        background: linear-gradient(90deg,#2563eb 0%,#1e3a8a 100%);
+    }
+
+    .btn-back.premium-btn i {
+        margin-right: 8px;
+    }
+
+    /* ...existing code... */
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html">
+                <img src="images/minglelogo.jpg" alt="Mingle" class="brand-logo">
+            </a>
+        </div>
+        <div class="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#" class="btn btn-back">
+                <i class="fas fa-arrow-left"></i> Back
+            </a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Premium Back to Celeb Hub Button -->
+        <div style="width:100%;display:flex;justify-content:center;margin-top:32px;margin-bottom:0;">
+            <button class="btn btn-back premium-btn" style="font-size:1.1rem;padding:14px 36px;border-radius:30px;background:linear-gradient(90deg,#1e3a8a 0%,#2563eb 100%);color:#fff;font-weight:700;box-shadow:0 4px 24px rgba(30,58,138,0.18);border:none;transition:background 0.3s;" onclick="window.location.href='celeb.html'">
+                <i class="fas fa-arrow-left"></i> Back to Celeb Hub
+            </button>
+        </div>
+
+        <!-- Header Section -->
+        <div class="checkout-header">
+            <h1><i class="fab fa-bitcoin"></i> Crypto Checkout</h1>
+            <p>Complete your subscription payment using cryptocurrency</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="step completed" id="step1">
+                    <div class="step-number">1</div>
+                    <span>Plan Selection</span>
+                </div>
+                <div class="step completed" id="step2">
+                    <div class="step-number">2</div>
+                    <span>Payment Method</span>
+                </div>
+                <div class="step active" id="step3">
+                    <div class="step-number">3</div>
+                    <span>Confirmation</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="checkout-grid">
+            <!-- Left Side - Plan Summary -->
+            <div class="plan-summary">
+                <div class="summary-card">
+                    <h3><i class="fas fa-crown"></i> Selected Plan</h3>
+                    <div class="plan-details" id="planDetails">
+                        <!-- Plan details will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="price-breakdown">
+                        <div class="price-item">
+                            <span>Subtotal</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        <div class="price-item total">
+                            <span>Total</span>
+                            <span id="totalAmount">$0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="conversion-rate">
+                        <p><i class="fas fa-exchange-alt"></i> Live conversion rate updated every 30 seconds</p>
+                        <div class="crypto-amount">
+                            <span id="cryptoAmount">0.0000</span> <span id="selectedCrypto">BTC</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Live Price Chart REMOVED -->
+                    <!-- <div class="price-chart-section">
+                        <h4><i class="fas fa-chart-line"></i> Live Price Chart</h4>
+                        <div class="chart-container">
+                            <canvas id="priceChart"></canvas>
+                        </div>
+                        <div class="chart-controls">
+                            <button class="chart-period-btn active" data-period="1h">1H</button>
+                            <button class="chart-period-btn" data-period="24h">24H</button>
+                            <button class="chart-period-btn" data-period="7d">7D</button>
+                        </div>
+                    </div> -->
+                </div>
+
+                <!-- Payment Upload Section -->
+                <div class="upload-section">
+                    <h3><i class="fas fa-upload"></i> Upload Payment Screenshot</h3>
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your payment screenshot here</p>
+                        <p>or <span class="upload-link">browse files</span></p>
+                        <input type="file" id="fileInput" accept="image/*" multiple>
+                    </div>
+                    <div class="uploaded-files" id="uploadedFiles"></div>
+                </div>
+            </div>
+
+            <!-- Right Side - Payment Method -->
+            <div class="payment-section">
+                <div class="payment-card premium-card">
+                    <h3><i class="fas fa-coins"></i> Select Cryptocurrency</h3>
+                    <p class="selection-prompt">Choose your preferred cryptocurrency for payment:</p>
+                    
+                    <div class="crypto-options premium-crypto-options">
+                        <div class="crypto-option compact-crypto selectable" data-crypto="BTC">
+                            <div class="crypto-left">
+                                <div class="crypto-icon">
+                                    <i class="fab fa-bitcoin"></i>
+                                </div>
+                                <div class="crypto-info">
+                                    <h4>Bitcoin</h4>
+                                    <span class="crypto-symbol">BTC</span>
+                                </div>
+                            </div>
+                            <div class="crypto-center">
+                                <div class="crypto-price" id="btcRate">Live Rate</div>
+                                <div class="crypto-change" id="btcChange24h">▼ 2.24%</div>
+                            </div>
+                            <div class="crypto-right">
+                                <div class="mini-chart-wrapper">
+                                    <canvas class="mini-chart" id="miniChartBTC" width="80" height="30"></canvas>
+                                </div>
+                                <div class="crypto-status">
+                                    <div class="status-dot live"></div>
+                                    <span>Live</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="crypto-option compact-crypto selectable" data-crypto="ETH">
+                            <div class="crypto-left">
+                                <div class="crypto-icon">
+                                    <i class="fab fa-ethereum"></i>
+                                </div>
+                                <div class="crypto-info">
+                                    <h4>Ethereum</h4>
+                                    <span class="crypto-symbol">ETH</span>
+                                </div>
+                            </div>
+                            <div class="crypto-center">
+                                <div class="crypto-price" id="ethRate">Live Rate</div>
+                                <div class="crypto-change" id="ethChange24h">▲ 2.64%</div>
+                            </div>
+                            <div class="crypto-right">
+                                <div class="mini-chart-wrapper">
+                                    <canvas class="mini-chart" id="miniChartETH" width="80" height="30"></canvas>
+                                </div>
+                                <div class="crypto-status">
+                                    <div class="status-dot live"></div>
+                                    <span>Live</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="crypto-option compact-crypto selectable" data-crypto="USDT">
+                            <div class="crypto-left">
+                                <div class="crypto-icon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <div class="crypto-info">
+                                    <h4>Tether</h4>
+                                    <span class="crypto-symbol">USDT</span>
+                                </div>
+                            </div>
+                            <div class="crypto-center">
+                                <div class="crypto-price" id="usdtRate">Stable Rate</div>
+                                <div class="crypto-change" id="usdtChange24h">0.00%</div>
+                            </div>
+                            <div class="crypto-right">
+                                <div class="mini-chart-wrapper">
+                                    <canvas class="mini-chart" id="miniChartUSDT" width="80" height="30"></canvas>
+                                </div>
+                                <div class="crypto-status">
+                                    <div class="status-dot stable"></div>
+                                    <span>Stable</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Instructions -->
+                    <div class="payment-instructions">
+                        <h4><i class="fas fa-shield-check"></i> Payment Process</h4>
+                        <div class="instruction-steps">
+                            <div class="instruction-step">
+                                <div class="step-circle">
+                                    <span class="step-num">1</span>
+                                </div>
+                                <div class="step-content">
+                                    <h5>Transfer Cryptocurrency</h5>
+                                    <p>Send the exact amount shown below to the provided wallet address. Ensure accuracy to avoid delays.</p>
+                                </div>
+                            </div>
+                            <div class="instruction-step">
+                                <div class="step-circle">
+                                    <span class="step-num">2</span>
+                                </div>
+                                <div class="step-content">
+                                    <h5>Capture Transaction Proof</h5>
+                                    <p>Take a clear screenshot or photo of your completed transaction showing the amount and transaction ID.</p>
+                                </div>
+                            </div>
+                            <div class="instruction-step">
+                                <div class="step-circle">
+                                    <span class="step-num">3</span>
+                                </div>
+                                <div class="step-content">
+                                    <h5>Submit & Verify</h5>
+                                    <p>Upload your payment proof and submit for verification. You'll receive confirmation within 24 hours.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="instruction-note">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Payments are processed securely and verified by our team. Network fees may apply from the blockchain network based on your chosen cryptocurrency.</span>
+                        </div>
+                    </div>
+
+                    <!-- Wallet Information -->
+                    <div class="wallet-info">
+                        <h4><i class="fas fa-wallet"></i> Payment Details</h4>
+                        <div class="wallet-address">
+                            <label>Wallet Address:</label>
+                            <div class="address-container">
+                                <input type="text" id="walletAddress" readonly>
+                                <button class="copy-btn" onclick="copyAddress()">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="amount-to-send">
+                            <label>Amount to Send:</label>
+                            <div class="amount-display">
+                                <span id="exactAmount">0.0000</span> <span id="cryptoSymbol">BTC</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Market Info -->
+                        <div class="market-info">
+                            <div class="market-stat">
+                                <span class="stat-label">Market Cap</span>
+                                <span class="stat-value" id="marketCap">$0</span>
+                            </div>
+                            <div class="market-stat">
+                                <span class="stat-label">24h Volume</span>
+                                <span class="stat-value" id="volume24h">$0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timer -->
+                    <div class="payment-timer">
+                        <i class="fas fa-clock"></i>
+                        <span>Payment expires in: <span id="timer">15:00</span></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button class="submit-btn premium-btn" id="submitPayment" disabled>
+                        <i class="fas fa-check-circle"></i>
+                        Complete Payment
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Notice -->
+        <div class="security-notice">
+            <i class="fas fa-shield-alt"></i>
+            <div>
+                <h4>Secure Payment</h4>
+                <p>Your payment is processed securely. All transactions are verified and encrypted.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Processing your payment...</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Payment Submitted!</h2>
+            <p>Your payment has been submitted for verification. You will receive a message via email within 4 hours.</p>
+            <button class="btn btn-primary" onclick="goHome()">Return to Home</button>
+        </div>
+    </div>
+
+    <script src="scripts/generalpay.js"></script>
+</body>
+</html>
