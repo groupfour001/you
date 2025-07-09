@@ -1,4 +1,3 @@
-
 /* Base Styles */
 body {
     margin: 0;
@@ -507,12 +506,6 @@ h3 {
 .hero-slider:hover {
     animation-play-state: paused;
 }
-
-
-
-
-
-
 
 /* Features Section */
 .features {
@@ -1903,9 +1896,75 @@ h3 {
     margin-bottom: 0.5rem;
 }
 
+/* Responsive Styles */
+@media (max-width: 900px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    .navbar {
+        padding: 0.7rem 3%;
+    }
+    .nav-menu {
+        gap: 1rem;
+    }
+    .brand-logo {
+        height: 38px;
+    }
+}
 
-
-
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.5rem 2%;
+        height: auto;
+    }
+    .nav-brand {
+        margin-bottom: 0.5rem;
+    }
+    .nav-menu {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+        align-items: flex-start;
+        background: var(--background-lighter);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 1rem 2%;
+        display: none;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        border-bottom-left-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
+        z-index: 999;
+    }
+    .nav-menu.active {
+        display: flex;
+    }
+    .nav-toggle {
+        display: block;
+        position: absolute;
+        right: 2%;
+        top: 1.2rem;
+        z-index: 1001;
+        color: var(--accent-color);
+        background: none;
+        border: none;
+    }
+    .brand-logo {
+        height: 32px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    h2 {
+        font-size: 1.1rem;
+    }
+}
 
 /* Mobile responsiveness for hero section */
 @media (max-width: 768px) {
@@ -2434,62 +2493,6 @@ h3 {
         height: 50vh;
         min-height: 300px;
     }
-
-    .slide-image {
-        object-fit: contain; /* Ensure full image visibility */
-        object-position: center;
-        width: 100%;
-        height: 100%;
-    }
-
-    .hero-content {
-        bottom: 2rem;
-        width: 90%;
-        padding: 0.8rem;
-    }
-
-    .hero-content h1 {
-        font-size: 1.6rem;
-    }
-
-    .hero-content p {
-        font-size: 0.9rem;
-    }
-
-    .hero-content .btn-primary,
-    .hero-content .btn-large {
-        font-size: 0.85rem;
-        padding: 0.6rem 1.2rem;
-    }
-
-    .quote-container {
-        bottom: 1.2rem;
-        padding: 0.8rem;
-        width: 90%;
-    }
-
-    .celebrity-quote {
-        font-size: 0.9rem;
-    }
-
-    .celebrity-name {
-        font-size: 0.9rem;
-    }
-
-    .quote-author {
-        font-size: 0.85rem;
-    }
-}
-
-/* Ensure smooth scrolling and performance optimizations */
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
 }
 
 /* High-resolution display support */
