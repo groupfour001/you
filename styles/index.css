@@ -509,29 +509,29 @@ h3 {
     animation-play-state: paused;
 }
 
-/* ===== MAKE HERO SECTION BIGGER ON MOBILE ===== */
+/* ===== MAKE HERO SECTION EVEN BIGGER ON MOBILE ===== */
 @media (max-width: 768px) {
   .hero {
-    height: 120vh !important;
-    min-height: 650px !important;
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
+    height: 150vh !important;
+    min-height: 800px !important;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
   .hero-slider, .slide, .celebrity-slide {
-    height: 65vh !important;
-    min-height: 350px !important;
+    height: 90vh !important;
+    min-height: 500px !important;
   }
 }
 @media (max-width: 480px) {
   .hero {
-    height: 130vh !important;
-    min-height: 600px !important;
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
+    height: 170vh !important;
+    min-height: 900px !important;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
   .hero-slider, .slide, .celebrity-slide {
-    height: 80vh !important;
-    min-height: 320px !important;
+    height: 110vh !important;
+    min-height: 600px !important;
   }
 }
 
@@ -1997,27 +1997,27 @@ h3 {
 /* Mobile responsiveness for hero section */
 @media (max-width: 768px) {
     .hero {
-        height: 120vh !important;
-        min-height: 650px !important;
-        padding-top: 2.5rem;
-        padding-bottom: 2.5rem;
+        height: 150vh !important;
+        min-height: 800px !important;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
     }
     .hero-slider, .slide, .celebrity-slide {
-        height: 65vh !important;
-        min-height: 350px !important;
+        height: 90vh !important;
+        min-height: 500px !important;
     }
 }
 
 @media (max-width: 480px) {
     .hero {
-        height: 130vh !important;
-        min-height: 600px !important;
-        padding-top: 2.5rem;
-        padding-bottom: 2.5rem;
+        height: 170vh !important;
+        min-height: 900px !important;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
     }
     .hero-slider, .slide, .celebrity-slide {
-        height: 80vh !important;
-        min-height: 320px !important;
+        height: 110vh !important;
+        min-height: 600px !important;
     }
 }
 
