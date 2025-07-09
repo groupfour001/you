@@ -509,29 +509,67 @@ h3 {
     animation-play-state: paused;
 }
 
-/* ===== MAKE HERO SECTION EVEN BIGGER ON MOBILE ===== */
+/* ===== MAKE HERO SECTION BIGGER ON MOBILE ===== */
 @media (max-width: 768px) {
   .hero {
-    height: 150vh !important;
-    min-height: 800px !important;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    height: 120vh !important;
+    min-height: 650px !important;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
   .hero-slider, .slide, .celebrity-slide {
-    height: 90vh !important;
-    min-height: 500px !important;
+    height: 65vh !important;
+    min-height: 350px !important;
   }
 }
 @media (max-width: 480px) {
   .hero {
-    height: 170vh !important;
-    min-height: 900px !important;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    height: 130vh !important;
+    min-height: 600px !important;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
   .hero-slider, .slide, .celebrity-slide {
-    height: 110vh !important;
-    min-height: 600px !important;
+    height: 80vh !important;
+    min-height: 320px !important;
+  }
+}
+
+/* ===== MAKE FEATURE AND MEMBERSHIP CARDS SMALLER IN WIDTH AND HEIGHT ON MOBILE ===== */
+@media (max-width: 600px) {
+  .feature-card, .tier-card {
+    max-width: 95vw;
+    width: 40vw !important;
+    min-width: 40vw !important;
+    height: 220px !important;
+    min-height: 180px !important;
+    font-size: 0.92rem;
+    padding: 0.5rem 0.3rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .feature-card h3, .tier-card h3 {
+    font-size: 1rem;
+  }
+  .feature-card p, .tier-card p, .tier-card ul li {
+    font-size: 0.9rem;
+  }
+  .tier-card .btn, .feature-card .btn {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
+  }
+}
+@media (max-width: 400px) {
+  .feature-card, .tier-card {
+    min-width: 80vw !important;
+    width: 80vw !important;
+    height: 160px !important;
+    min-height: 120px !important;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.1rem;
   }
 }
 
@@ -1997,27 +2035,27 @@ h3 {
 /* Mobile responsiveness for hero section */
 @media (max-width: 768px) {
     .hero {
-        height: 150vh !important;
-        min-height: 800px !important;
-        padding-top: 3rem;
-        padding-bottom: 3rem;
+        height: 120vh !important;
+        min-height: 650px !important;
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
     }
     .hero-slider, .slide, .celebrity-slide {
-        height: 90vh !important;
-        min-height: 500px !important;
+        height: 65vh !important;
+        min-height: 350px !important;
     }
 }
 
 @media (max-width: 480px) {
     .hero {
-        height: 170vh !important;
-        min-height: 900px !important;
-        padding-top: 3rem;
-        padding-bottom: 3rem;
+        height: 130vh !important;
+        min-height: 600px !important;
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
     }
     .hero-slider, .slide, .celebrity-slide {
-        height: 110vh !important;
-        min-height: 600px !important;
+        height: 80vh !important;
+        min-height: 320px !important;
     }
 }
 
