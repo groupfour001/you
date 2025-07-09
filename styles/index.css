@@ -2487,7 +2487,7 @@ h3 {
 
     .hero-slider {
         height: 50vh;
-        min-height: 300px;
+               min-height: 300px;
     }
 
     .slide,
@@ -2569,6 +2569,23 @@ h3 {
         box-shadow: none;
         border: 1px solid #000;
     }
+}
+
+/* ===== ENHANCED SLIDER IMAGE HEIGHT FOR MOBILE ===== */
+@media (max-width: 600px) {
+  .slider img, .slider-image, .slider img.slider-image {
+    height: 260px !important;
+    min-height: 200px;
+    max-height: 60vw;
+    object-fit: cover;
+  }
+}
+@media (max-width: 400px) {
+  .slider img, .slider-image, .slider img.slider-image {
+    height: 180px !important;
+    min-height: 120px;
+    max-height: 80vw;
+  }
 }
 
 /* Final closing braces for the file */
