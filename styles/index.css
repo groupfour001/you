@@ -2509,10 +2509,12 @@ h3 {
         max-width: 100vw;
         overflow-x: hidden;
     }
+
     .navbar, .footer, .features, .membership, .cta, .modal-content {
         padding-left: 2vw !important;
         padding-right: 2vw !important;
     }
+
     .nav-menu {
         width: 100vw !important;
         min-width: 0 !important;
@@ -2521,20 +2523,239 @@ h3 {
         padding-left: 2vw !important;
         padding-right: 2vw !important;
     }
+
     .nav-menu.active {
         right: 0 !important;
     }
+
     .brand-logo {
         max-width: 90vw;
         height: 36px !important;
     }
-    .hero, .hero-slider {
+
+    .hero {
+        height: 100vh;
+        min-height: 450px;
+        overflow: hidden;
         width: 100vw !important;
         min-width: 0 !important;
-        overflow-x: hidden !important;
     }
-    .slide, .celebrity-slide {
-        min-width: 90vw !important;
-        width: 90vw !important;
-        max-width: 95vw !important;
-        height
+
+    .hero-slider {
+        width: calc(100vw * 20);
+        height: 45vh;
+        min-height: 250px;
+        overflow: hidden;
+    }
+
+    @keyframes slideLeft {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-100vw * 10));
+        }
+    }
+
+    .slide,
+    .celebrity-slide {
+        width: 100vw !important;
+        min-width: 100vw !important;
+        max-width: 100vw !important;
+        height: 45vh;
+        min-height: 250px;
+        transform: scale(0.92);
+        overflow: hidden;
+    }
+
+    .slide:hover {
+        transform: scale(0.97);
+    }
+
+    .slide-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .image-caption {
+        font-size: 0.9rem;
+        bottom: 5rem;
+        width: 95%;
+    }
+
+    .celebrity-name {
+        font-size: 0.9rem;
+        bottom: 0.5rem;
+        width: 95%;
+    }
+
+    .quote-container {
+        bottom: 1rem;
+        padding: 0.8rem;
+        width: 95%;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        transform: translateX(-50%);
+        opacity: 1;
+        z-index: 3;
+    }
+
+    .celebrity-quote {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        margin-bottom: 0.5rem;
+    }
+
+    .quote-author {
+        font-size: 0.8rem;
+    }
+
+    .hero-content {
+        bottom: 1.5rem;
+        padding: 0.8rem;
+        width: 95%;
+        max-width: 95%;
+        transform: translateX(-50%);
+    }
+
+    .hero-content h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero-content .btn-primary,
+    .hero-content .btn-large {
+        font-size: 0.85rem;
+        padding: 0.5rem 1.2rem;
+        min-width: 100px;
+        border-radius: 20px;
+    }
+
+    /* Adjustments for Other Sections */
+    .features {
+        padding: 2.5rem 3%;
+    }
+
+    .features h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .feature-card p {
+        font-size: 0.9rem;
+    }
+
+    .membership {
+        padding: 2.5rem 3%;
+    }
+
+    .membership h2 {
+        font-size: 1.8rem;
+    }
+
+    .tier-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .tier-card {
+        padding: 1.5rem;
+    }
+
+    .tier-card h3 {
+        font-size: 1.6rem;
+    }
+
+    .tier-card .price {
+        font-size: 2rem;
+    }
+
+    .tier-card ul li {
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        padding: 2rem 3% 1rem;
+    }
+
+    .footer-content {
+        gap: 1.5rem;
+    }
+
+    .footer-section h4 {
+        font-size: 1.1rem;
+    }
+
+    .footer-section ul li a {
+        font-size: 0.9rem;
+    }
+
+    .sponsors-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    .sponsor-item {
+        padding: 1rem 0.5rem;
+    }
+
+    .sponsor-item i {
+        font-size: 1.8rem;
+    }
+
+    .sponsor-item span {
+        font-size: 0.65rem;
+    }
+
+    .footer-sponsors {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem auto;
+    }
+
+    .footer-sponsors h4 {
+        font-size: 1.1rem;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+        margin: 15px;
+        width: calc(100% - 30px);
+    }
+
+    .modal-content h3 {
+        font-size: 1.4rem;
+    }
+
+    .terms-content, .privacy-content {
+        padding: 1.5rem;
+    }
+
+    .terms-content h4, .privacy-content h4 {
+        font-size: 1.2rem;
+    }
+
+    .terms-content p, .privacy-content p {
+        font-size: 0.9rem;
+    }
+
+    .close-modal {
+        right: 1rem;
+        top: 1rem;
+        font-size: 1.2rem;
+    }
+}
