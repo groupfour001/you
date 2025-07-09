@@ -395,243 +395,178 @@ body {
     background: linear-gradient(90deg, #181818 0%, #d4af37 100%);
     color: #bfa14a;
 }
-/* Removed password-masked class that was preventing password visibility toggle */
 
-/* ===== COMPREHENSIVE MOBILE RESPONSIVE STYLES FOR SIGNIN ===== */
+/* === Restyle Email and Password Input Fields for Modern Look === */
+.input-container input[type="email"],
+.input-container input[type="password"] {
+    background: rgba(34, 34, 34, 0.95);
+    border: 1.5px solid #d4af37;
+    color: #fff;
+    font-size: 1.13rem;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(212, 175, 55, 0.08);
+    padding: 0 18px;
+    transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+    letter-spacing: 0.02em;
+}
+.input-container input[type="email"]:focus,
+.input-container input[type="password"]:focus {
+    border: 2px solid #fffbe6;
+    background: #181818;
+    box-shadow: 0 0 0 2px #d4af3733, 0 2px 12px rgba(212, 175, 55, 0.12);
+    color: #d4af37;
+}
+.input-container input[type="email"]::placeholder,
+.input-container input[type="password"]::placeholder {
+    color: #bfa14a;
+    font-size: 1rem;
+    opacity: 0.85;
+    letter-spacing: 0.01em;
+}
 
-/* Modal responsive design */
-@media (max-width: 768px) {
-    .modal-content {
-        width: 95%;
-        max-width: none;
-        margin: 1rem;
-        padding: 2rem;
+/* Add a subtle icon for email and password fields */
+.input-container.email-input::before {
+    content: '\f0e0'; /* FontAwesome envelope */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #d4af37;
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+.input-container.password-input::before {
+    content: '\f023'; /* FontAwesome lock */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #d4af37;
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+.input-container.email-input input[type="email"],
+.input-container.password-input input[type="password"] {
+    padding-left: 38px;
+}
+
+/* ===== ENHANCED RESPONSIVE STYLES FOR SIGNIN ===== */
+
+/* General improvements for all screens */
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* Fluid font scaling for better readability */
+body {
+    font-size: 1rem;
+}
+
+@media (max-width: 1200px) {
+    .signin-container {
+        padding-left: 2%;
+        padding-right: 2%;
     }
-    
-    .modal-content h3 {
-        font-size: 1.5rem;
+    .signin-form-container {
+        max-width: 380px;
+        padding: 40px 24px 28px 24px;
     }
-    
-    .close-modal {
-        right: 1rem;
-        top: 1rem;
+    .signin-sidebar {
+        max-width: 300px;
+        padding: 32px 18px;
     }
-    
-    /* Main signin container mobile */
+}
+
+@media (max-width: 900px) {
     .signin-container {
         flex-direction: column;
-        align-items: center;
-        padding: 40px 4% 20px;
-        min-height: 100vh;
+        align-items: stretch;
+        padding: 40px 2% 20px;
     }
-    
-    .signin-form-container {
+    .signin-form-container, .signin-sidebar {
         margin-right: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+    .signin-form-container {
         margin-bottom: 2rem;
-        padding: 2rem 1.5rem;
-        max-width: 100%;
-        width: 100%;
-        box-sizing: border-box;
-    }
-    
-    .back-home-btn {
-        top: 15px;
-        left: 15px;
-        padding: 10px 20px;
-        font-size: 0.95rem;
-        z-index: 1001;
-    }
-    
-    .form-header .logo h1 {
-        font-size: 1.8rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .form-header h2 {
-        font-size: 1.3rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .form-header p {
-        font-size: 0.9rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-    
-    .input-container {
-        height: 48px;
-    }
-    
-    .input-container input {
-        font-size: 1rem;
-        padding: 12px 15px;
-    }
-    
-    .signin-btn {
-        height: 48px;
-        font-size: 1rem;
-        margin-top: 1rem;
-    }
-    
-    .signin-sidebar {
-        padding: 1.5rem;
-        max-width: 100%;
-        width: 100%;
-    }
-    
-    .sidebar-content h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-    }
-    
-    .sidebar-content p {
-        font-size: 0.95rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .feature-item {
-        padding: 1rem;
-        margin-bottom: 1rem;
-    }
-    
-    .feature-item h4 {
-        font-size: 1.1rem;
-    }
-    
-    .feature-item p {
-        font-size: 0.9rem;
     }
 }
 
-/* Small mobile devices */
+@media (max-width: 600px) {
+    html {
+        font-size: 15px;
+    }
+    .signin-form-container, .signin-sidebar {
+        padding: 1.2rem 0.5rem;
+        border-radius: 12px;
+    }
+    .modal-content {
+        padding: 1.2rem 0.5rem;
+        border-radius: 12px;
+    }
+    .back-home-btn {
+        padding: 7px 14px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    html {
+        font-size: 14px;
+    }
+    .signin-form-container, .signin-sidebar {
+        padding: 0.7rem 0.2rem;
+        border-radius: 8px;
+    }
+    .modal-content {
+        padding: 0.7rem 0.2rem;
+        border-radius: 8px;
+    }
+    .back-home-btn {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Ensure buttons and inputs are always touch-friendly */
+input, button, .btn {
+    min-height: 44px;
+    font-size: 1em;
+}
+
+/* Make sure modal is scrollable on very small screens */
 @media (max-width: 480px) {
-    .signin-container {
-        padding: 30px 3% 15px;
+    .modal-content {
+        max-height: 90vh;
+        overflow-y: auto;
     }
-    
-    .signin-form-container {
-        padding: 1.5rem 1rem;
-        border-radius: 16px;
-    }
-    
-    .back-home-btn {
-        top: 10px;
-        left: 10px;
-        padding: 8px 16px;
-        font-size: 0.9rem;
-    }
-    
-    .form-header .logo h1 {
-        font-size: 1.6rem;
-    }
-    
-    .form-header h2 {
-        font-size: 1.2rem;
-    }
-    
-    .form-header p {
-        font-size: 0.85rem;
-    }
-    
-    .form-group {
-        margin-bottom: 1.2rem;
-    }
-    
-    .input-container {
-        height: 44px;
-    }
-    
-    .input-container input {
-        font-size: 0.95rem;
-        padding: 10px 12px;
-    }
-    
-    .signin-btn {
-        height: 44px;
-        font-size: 0.95rem;
-        padding: 12px 20px;
-    }
-    
+}
+
+/* Hide sidebar if not enough space */
+@media (max-width: 350px) {
     .signin-sidebar {
-        padding: 1.2rem 1rem;
-    }
-    
-    .sidebar-content h3 {
-        font-size: 1.3rem;
-    }
-    
-    .sidebar-content p {
-        font-size: 0.9rem;
-    }
-    
-    .feature-item {
-        padding: 0.8rem;
-    }
-    
-    .feature-item h4 {
-        font-size: 1rem;
-    }
-    
-    .feature-item p {
-        font-size: 0.85rem;
+        display: none;
     }
 }
 
-/* Extra small devices */
-@media (max-width: 360px) {
+/* Landscape orientation for very small screens */
+@media (max-width: 600px) and (orientation: landscape) {
     .signin-container {
-        padding: 25px 2% 10px;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px 2% 10px;
     }
-    
-    .signin-form-container {
-        padding: 1.2rem 0.8rem;
-    }
-    
-    .back-home-btn {
-        top: 8px;
-        left: 8px;
-        padding: 6px 12px;
-        font-size: 0.85rem;
-    }
-    
-    .form-header .logo h1 {
-        font-size: 1.4rem;
-    }
-    
-    .form-header h2 {
-        font-size: 1.1rem;
-    }
-    
-    .input-container {
-        height: 42px;
-    }
-    
-    .input-container input {
-        font-size: 0.9rem;
-        padding: 8px 10px;
-    }
-    
-    .signin-btn {
-        height: 42px;
-        font-size: 0.9rem;
-    }
-}
-
-/* Landscape orientation for mobile */
-@media (max-width: 768px) and (orientation: landscape) {
-    .signin-container {
-        padding: 20px 4% 10px;
-    }
-    
-    .back-home-btn {
-        top: 10px;
-        left: 10px;
-    }
-    
-    .signin-form-container {
+    .signin-form-container, .signin-sidebar {
         margin-bottom: 1rem;
     }
 }

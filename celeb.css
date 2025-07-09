@@ -1,0 +1,1079 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 149.25373134328357%;
+    font-family: 'Playfair Display', 'Segoe UI', serif;
+    background: #0a0a0a;
+    color: #fff;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Navigation and Header Styles */
+header {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.98), rgba(10, 10, 10, 0.95));
+    padding: 2rem 5%;
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(201, 164, 92, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201, 164, 92, 0.2), transparent);
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, #fff, #c9a45c, #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+    font-family: 'Playfair Display', serif;
+}
+
+.main-nav {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.main-nav a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.main-nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: #c9a45c;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.main-nav a:hover {
+    color: #fff;
+}
+
+.main-nav a:hover::before {
+    width: 80%;
+}
+
+.main-nav a.active {
+    color: #c9a45c;
+}
+
+.main-nav a.active::before {
+    width: 80%;
+    background: #c9a45c;
+}
+
+/* Controls Container Styles */
+.controls-container {
+    background: rgba(15, 15, 15, 0.7);
+    padding: 2rem 5%;
+    margin: 0 auto 2rem;
+    max-width: 1800px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(201, 164, 92, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 1rem 3rem 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(201, 164, 92, 0.2);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(201, 164, 92, 0.4);
+    box-shadow: 0 0 15px rgba(201, 164, 92, 0.1);
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#search-btn {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: rgba(201, 164, 92, 0.7);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#search-btn:hover {
+    color: #c9a45c;
+    transform: scale(1.1);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 0.8rem 1.5rem;
+    background: rgba(25, 25, 25, 0.9);
+    border: 1px solid rgba(201, 164, 92, 0.2);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.filter-btn:hover {
+    background: rgba(35, 35, 35, 0.9);
+    border-color: rgba(201, 164, 92, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, rgba(201, 164, 92, 0.2), rgba(201, 164, 92, 0.1));
+    border-color: rgba(201, 164, 92, 0.4);
+    color: #c9a45c;
+}
+
+.sort-options select {
+    padding: 0.8rem 2.5rem 0.8rem 1.5rem;
+    background: rgba(25, 25, 25, 0.9);
+    border: 1px solid rgba(201, 164, 92, 0.2);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    font-size: 0.95rem;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c9a45c'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2em;
+    transition: all 0.3s ease;
+}
+
+.sort-options select:hover {
+    border-color: rgba(201, 164, 92, 0.4);
+    box-shadow: 0 0 15px rgba(201, 164, 92, 0.1);
+}
+
+.sort-options select:focus {
+    outline: none;
+    border-color: rgba(201, 164, 92, 0.5);
+    box-shadow: 0 0 20px rgba(201, 164, 92, 0.15);
+}
+
+/* General Styles */
+.celebrity-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    padding: 2rem 3%;
+    max-width: 2000px;
+    margin: 0 auto;
+    background: linear-gradient(to bottom, #0a0a0a, #151515);
+}
+
+.celebrity-card {
+    background: rgba(25, 25, 25, 0.9);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.celebrity-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 2px;
+    background: linear-gradient(45deg, transparent, rgba(201, 164, 92, 0.3), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.celebrity-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(201, 164, 92, 0.1);
+}
+
+.celebrity-card:hover::before {
+    opacity: 1;
+}
+
+.celebrity-card img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    transition: all 0.6s ease;
+    filter: brightness(0.9) contrast(1.1);
+}
+
+.celebrity-card:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.1) contrast(1.1);
+}
+
+.celebrity-info {
+    padding: 1.8rem;
+    background: linear-gradient(to top, rgba(15, 15, 15, 0.98), rgba(20, 20, 20, 0.95));
+    position: relative;
+}
+
+.celebrity-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201, 164, 92, 0.2), transparent);
+}
+
+.celebrity-info h2 {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+    font-family: 'Playfair Display', serif;
+}
+
+.celebrity-info p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.92rem;
+    margin: 0.7rem 0;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.3px;
+}
+
+.celeb-icon {
+    color: #c9a45c;
+    margin-right: 10px;
+    font-size: 1.1em;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
+
+.celebrity-card:hover .celeb-icon {
+    opacity: 1;
+    color: #d4b06a;
+    transform: scale(1.1);
+}
+
+.celebrity-field {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 500;
+}
+
+.buy-access {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    border: 1px solid rgba(201, 164, 92, 0.3);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.buy-access::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.buy-access:hover {
+    background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+    border-color: rgba(201, 164, 92, 0.6);
+    box-shadow: 0 5px 15px rgba(201, 164, 92, 0.2);
+    transform: translateY(-2px);
+}
+
+.buy-access:hover::before {
+    left: 100%;
+}
+
+.buy-access i {
+    margin-right: 8px;
+    font-size: 0.9em;
+    opacity: 0.9;
+    transition: transform 0.3s ease;
+}
+
+.buy-access:hover i {
+    transform: translateX(-3px);
+}
+
+/* Purchase Button Styles */
+.purchase-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #000;
+    text-decoration: none;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    text-transform: uppercase;
+    min-width: 160px;
+    margin-top: 1rem;
+}
+
+.purchase-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.5);
+    background: linear-gradient(135deg, #FFA500, #FFD700);
+    color: #000;
+    text-decoration: none;
+}
+
+.purchase-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(255, 215, 0, 0.4);
+}
+
+.purchase-btn i {
+    font-size: 1rem;
+}
+
+/* Animation for card appearance */
+.celebrity-card {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered animation delay for cards */
+.celebrity-card:nth-child(n) {
+    animation-delay: calc(0.1s * var(--i, 1));
+}
+
+/* Back to Top Button */
+#back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: #FFD700;
+    color: #111111;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+#back-to-top:hover {
+    background-color: #fff;
+    transform: translateY(-3px);
+}
+
+#back-to-top.visible {
+    display: flex;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+    background: linear-gradient(45deg, rgba(15, 15, 15, 0.97), rgba(25, 25, 25, 0.97));
+    padding: 5rem 2rem;
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201, 164, 92, 0.3), transparent);
+}
+
+.newsletter-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="%23c9a45c" stroke-width="0.1" fill="none"/></svg>');
+    background-size: 50px 50px;
+    opacity: 0.03;
+    pointer-events: none;
+}
+
+.newsletter-container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.newsletter-container h2 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
+    background: linear-gradient(45deg, #fff, #c9a45c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.newsletter-container p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+}
+
+#newsletter-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#newsletter-email {
+    flex: 1;
+    padding: 1.2rem 1.5rem;
+    border: 1px solid rgba(201, 164, 92, 0.3);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+#newsletter-email:focus {
+    outline: none;
+    border-color: rgba(201, 164, 92, 0.6);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 20px rgba(201, 164, 92, 0.1);
+}
+
+#newsletter-email::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-btn {
+    padding: 0 2.5rem;
+    background: linear-gradient(135deg, #c9a45c, #a67c3b);
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.newsletter-btn:hover {
+    background: linear-gradient(135deg, #d4b06a, #b68943);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(201, 164, 92, 0.2);
+}
+
+.newsletter-btn:hover::before {
+    left: 100%;
+}
+
+@media (max-width: 768px) {
+    /* ===== COMPREHENSIVE MOBILE RESPONSIVE STYLES FOR CELEB PAGE ===== */
+
+    /* Mobile Header and Navigation */
+    .mobile-nav-toggle {
+        display: block;
+    }
+    
+    .mobile-nav-toggle:hover {
+        color: #c9a45c;
+    }
+    
+    header {
+        padding: 1.5rem 4%;
+        margin-bottom: 1.5rem;
+    }
+    
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+        letter-spacing: 3px;
+        margin-bottom: 0;
+        line-height: 1.2;
+    }
+    
+    .main-nav {
+        padding: 0;
+        margin-bottom: 0;
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 10px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+    }
+    
+    .main-nav.active {
+        max-height: 300px;
+        padding: 1rem 0;
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 0;
+    }
+    
+    .main-nav a {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+        display: block;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .main-nav li:last-child a {
+        border-bottom: none;
+    }
+    
+    /* Controls Container Mobile */
+    .controls-container {
+        padding: 1.5rem 4%;
+        gap: 1.5rem;
+    }
+    
+    .search-box {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .search-box input {
+        font-size: 1rem;
+        padding: 12px 15px;
+    }
+    
+    .search-box button {
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+    
+    .filter-buttons {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        justify-content: center;
+    }
+    
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        min-width: auto;
+    }
+    
+    .sort-options select {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    /* Celebrity Cards Mobile */
+    .celebrity-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 4%;
+    }
+    
+    .celebrity-card {
+        padding: 1.5rem;
+        max-width: none;
+    }
+    
+    .celebrity-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .celebrity-card p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+    
+    .celebrity-card .details {
+        gap: 0.8rem;
+    }
+    
+    .celebrity-card .details span {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+    
+    .celebrity-card .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Newsletter Section Mobile */
+    .newsletter-container {
+        padding: 2.5rem 4%;
+        margin: 3rem 0 2rem;
+    }
+    
+    .newsletter-container h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .newsletter-container p {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    #newsletter-form {
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 100%;
+    }
+    
+    #newsletter-email {
+        width: 100%;
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+    
+    .newsletter-btn {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+    
+    /* Celebrity Images Mobile */
+    .celebrity-card img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        border: 3px solid rgba(201, 164, 92, 0.3);
+    }
+}
+
+/* ===== ENHANCED MOBILE RESPONSIVE STYLES FOR CELEB PAGE ===== */
+@media (max-width: 1100px) {
+  .celebrity-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+  .celebrity-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .celebrity-grid { grid-template-columns: 1fr; gap: 1rem; padding: 0 2%; }
+  .celebrity-card { padding: 1rem; }
+  .celebrity-card img { height: 180px; }
+  .controls-container { flex-direction: column; gap: 1rem; padding: 1rem 2%; }
+  .main-nav ul { flex-direction: column; gap: 0.5rem; }
+  .main-nav { padding: 0.5rem 0; border-radius: 8px; }
+  header { padding: 1rem 2%; }
+  h1 { font-size: 1.5rem; }
+}
+@media (max-width: 400px) {
+  .celebrity-card img { height: 120px; }
+  .celebrity-info { padding: 1rem; }
+  .controls-container { padding: 0.5rem 1%; }
+  .main-nav { padding: 0.2rem 0; }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    header {
+        padding: 1rem 3%;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+        margin-bottom: 0.8rem;
+    }
+    
+    .main-nav {
+        padding: 0.6rem 0;
+        margin-bottom: 1rem;
+    }
+    
+    .main-nav ul {
+        gap: 0.8rem;
+    }
+    
+    .main-nav a {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+    }
+    
+    /* Controls Container Small Mobile */
+    .controls-container {
+        padding: 1rem 3%;
+        gap: 1rem;
+    }
+    
+    .search-box input {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+    
+    .search-box button {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+    
+    .filter-buttons {
+        gap: 0.6rem;
+    }
+    
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+    
+    /* Celebrity Grid Small Mobile */
+    .celebrity-grid {
+        gap: 1.2rem;
+        padding: 0 3%;
+    }
+    
+    .celebrity-card {
+        padding: 1.2rem;
+    }
+    
+    .celebrity-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .celebrity-card p {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .celebrity-card .details span {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+    
+    .celebrity-card .btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .celebrity-card img {
+        width: 70px;
+        height: 70px;
+    }
+    
+    /* Newsletter Small Mobile */
+    .newsletter-container {
+        padding: 2rem 3%;
+        margin: 2rem 0 1.5rem;
+    }
+    
+    .newsletter-container h2 {
+        font-size: 1.6rem;
+    }
+    
+    .newsletter-container p {
+        font-size: 0.9rem;
+    }
+    
+    #newsletter-email {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+    
+    .newsletter-btn {
+        padding: 10px 16px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 360px) {
+    header {
+        padding: 0.8rem 2%;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+    }
+    
+    .controls-container {
+        padding: 0.8rem 2%;
+    }
+    
+    .celebrity-grid {
+        padding: 0 2%;
+    }
+    
+    .celebrity-card {
+        padding: 1rem;
+    }
+    
+    .celebrity-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .celebrity-card p {
+        font-size: 0.85rem;
+    }
+    
+    .celebrity-card img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .newsletter-container {
+        padding: 1.5rem 2%;
+    }
+    
+    .newsletter-container h2 {
+        font-size: 1.4rem;
+    }
+}
+
+/* Landscape Phone Orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+    header {
+        padding: 1rem 4%;
+    }
+    
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .main-nav {
+        margin-bottom: 1rem;
+    }
+    
+    .main-nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+    
+    .celebrity-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .controls-container {
+        padding: 1.2rem 4%;
+    }
+}
+
+/* Mobile Navigation Toggle */
+.mobile-nav-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: 2rem;
+    right: 5%;
+    z-index: 1001;
+}
+
+.header-content {
+    position: relative;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #FFD700;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #FFC800;
+}
+
+/* Purchase Button Styles */
+.purchase-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #000;
+    text-decoration: none;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    text-transform: uppercase;
+    min-width: 160px;
+    margin-top: 1rem;
+}
+
+.purchase-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.5);
+    background: linear-gradient(135deg, #FFA500, #FFD700);
+    color: #000;
+    text-decoration: none;
+}
+
+.purchase-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(255, 215, 0, 0.4);
+}
+
+.purchase-btn i {
+    font-size: 1rem;
+}
