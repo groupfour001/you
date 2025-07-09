@@ -1,8 +1,4 @@
-Below is your **full CSS code** with the updated hero section and slider styles integrated, as requested. I've merged the updated hero and slider CSS from my previous response with your original stylesheet, ensuring that all other sections (e.g., navigation, features, membership, footer, etc.) remain unchanged. The updates focus on making the hero section and slider "float" and scale like on desktop while fitting perfectly on mobile without cropping, short slides, or misaligned content. The text, buttons, and quotes are always visible and centered, with smaller sizes for mobile screens.
 
-### Full CSS Code
-```css
-/* Base Styles */
 body {
     margin: 0;
     padding: 0;
